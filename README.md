@@ -1,6 +1,6 @@
-# 📚 Base de Conocimiento y Documentación Técnica - App Contable
+# 📚 Base de Conocimiento y Documentación Técnica
 
-Bienvenido al repositorio centralizado de documentación de la **App Contable**. Este repositorio tiene como objetivo construir y mantener la documentación oficial del sistema para dos fines principales:
+Bienvenido al repositorio centralizado de documentación del ecosistema **zoenube**. Este repositorio tiene como objetivo construir y mantener la documentación oficial del sistema para dos fines principales:
 1. **Centro de Ayuda Público:** Guías paso a paso para usuarios finales y clientes.
 2. **Base de Conocimiento Interna y RAG (IA):** Estructura optimizada para el equipo de soporte técnico y el entrenamiento de modelos de IA de primera línea.
 
