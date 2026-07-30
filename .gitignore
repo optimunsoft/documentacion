@@ -1,0 +1,15 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node / Build tools (por si se usa un generador de sitios estáticos a futuro)
+node_modules/
+.cache/
+dist/
+build/
