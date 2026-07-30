@@ -10,7 +10,7 @@ Para mantener la calidad técnica e ir organizando el contenido de forma estánd
 
 ## 🔄 Flujo de Git (Gitflow Básico)
 
-1. **`main` está protegida.** No se permiten commits directos a `main`. Todo cambio entra vía Pull Request (PR).
+1. **`master` está protegida.** No se permiten commits directos a `master`. Todo cambio entra vía Pull Request (PR).
 2. **Nomenclatura de ramas:**
    - Nuevas funcionalidades/documentos: `feature/DOC-ID-breve-descripcion` (ej. `feature/DOC-1-mapa-y-glosario`).
    - Correcciones: `fix/DOC-ID-breve-descripcion`.
@@ -37,7 +37,7 @@ Para mantener la calidad técnica e ir organizando el contenido de forma estánd
 ## 📋 Proceso de Revisión (Pull Request)
 
 1. Una vez terminada la tarea en tu rama local, sube los cambios a GitHub.
-2. Abre un **Pull Request hacia `main`**.
+2. Abre un **Pull Request hacia `master`**.
 3. El PR cargará automáticamente la plantilla de revisión. Llénala con los datos correspondientes.
 4. Vincula la tarea de Jira correspondiente en el PR.
 5. Asigna el PR a revisión y mueve la tarjeta en Jira a la columna **En Review (PR)**.
