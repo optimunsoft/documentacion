@@ -392,3 +392,6 @@ La estructura propuesta está basada en las buenas prácticas identificadas dura
 El diseño permite utilizar una única fuente de documentación tanto para el Centro de Ayuda destinado a los usuarios como para la base de conocimiento utilizada por la IA de soporte, reduciendo la duplicidad de información y facilitando su mantenimiento a largo plazo.
 
 
+# Maqueta
+
+https://www.figma.com/make/JBl5Q8nmi2OC0qdZbJ824I/Help-Center-for-Accounting-SaaS?t=a5gK4ju2PmEzoyJO-1
