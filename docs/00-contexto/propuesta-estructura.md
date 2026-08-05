@@ -394,4 +394,4 @@ El diseño permite utilizar una única fuente de documentación tanto para el Ce
 
 # Maqueta
 
-https://www.figma.com/make/JBl5Q8nmi2OC0qdZbJ824I/Help-Center-for-Accounting-SaaS?t=a5gK4ju2PmEzoyJO-1
+https://wager-give-45360128.figma.site/
