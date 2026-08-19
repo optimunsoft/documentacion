@@ -11,7 +11,7 @@ tags:
   - plan-unico-de-cuentas
   - configuracion
   - plan-semilla
-  - optimum
+  - optimun
   - exportacion
   - cargar-puc
   - cuentas-contables
@@ -29,7 +29,7 @@ Elige el Plan Único de Cuentas que utilizará tu empresa nueva y déjalo dispon
 
 1. [Elegir cómo configurar el PUC](#1-elige-cómo-configurar-el-puc)
 2. [Cargar el plan semilla Comercial](#2-carga-el-plan-semilla-comercial)
-3. [Cargar el PUC de Optimum](#3-carga-el-puc-de-optimum)
+3. [Cargar el PUC de Optimun](#3-carga-el-puc-de-optimun)
 4. [Revisar el plan configurado](#4-revisa-el-plan-configurado)
 5. [Errores frecuentes](#errores-frecuentes)
 
@@ -37,7 +37,7 @@ Elige el Plan Único de Cuentas que utilizará tu empresa nueva y déjalo dispon
 
 - Tener creada y seleccionada una empresa demo.
 - Contar con acceso al módulo de Contabilidad.
-- Si utilizarás el PUC de Optimum, exportarlo previamente desde el software de escritorio.
+- Si utilizarás el PUC de Optimun, exportarlo previamente desde el software de escritorio.
 
 ## Paso a paso
 
@@ -46,7 +46,7 @@ Elige el Plan Único de Cuentas que utilizará tu empresa nueva y déjalo dispon
 En el menú lateral, abre **Contabilidad**, selecciona **Configuración** y luego elige **PUC**. Como es una empresa nueva, todavía no tiene un plan de cuentas asociado. Puedes configurarlo de una de estas dos formas:
 
 - **Plan semilla Comercial:** utiliza el PUC predeterminado que Zoe tiene preparado para una empresa comercial.
-- **PUC de Optimum:** exporta el plan que ya tienes configurado en el software de escritorio y cárgalo en Zoe.
+- **PUC de Optimun:** exporta el plan que ya tienes configurado en el software de escritorio y cárgalo en Zoe.
 
 ### 2. Carga el plan semilla Comercial
 
@@ -56,11 +56,11 @@ En el menú lateral, abre **Contabilidad**, selecciona **Configuración** y lueg
 
 Esta opción es la indicada cuando comenzarás la empresa desde cero y no necesitas conservar un plan de cuentas anterior.
 
-### 3. Carga el PUC de Optimum
+### 3. Carga el PUC de Optimun
 
-1. Exporta desde Optimum de escritorio el plan de cuentas que ya tienes configurado.
+1. Exporta desde Optimun de escritorio el plan de cuentas que ya tienes configurado.
 2. Regresa a la configuración del PUC en Zoe.
-3. Carga el archivo exportado para conservar la estructura contable de Optimum.
+3. Carga el archivo exportado para conservar la estructura contable de Optimun.
 
 ### 4. Revisa el plan configurado
 
@@ -82,7 +82,7 @@ Comprueba que estés dentro de una empresa y que tengas acceso al módulo de Con
 
 Comprueba que seleccionaste el tipo **Comercial** antes de pulsar **Cargar PUC**.
 
-### No puedes cargar el PUC de Optimum
+### No puedes cargar el PUC de Optimun
 
 Confirma que primero exportaste el plan desde el software de escritorio y que seleccionaste el archivo correcto.
 

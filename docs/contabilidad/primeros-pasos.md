@@ -7,7 +7,7 @@ slug: primeros-pasos
 order: 1
 tags:
   - migracion
-  - optimum
+  - optimun
   - demo
   - registro
   - soporte
@@ -22,19 +22,19 @@ last_updated: 2026-08-11
 
 Elige la opción que mejor describe tu situación para comenzar a usar Contabilidad en Zoe.
 
-## Escenario 1: ya utilizas el software de escritorio Optimum
+## Escenario 1: ya utilizas el software de escritorio Optimun
 
-Si trabajas actualmente con Optimum y quieres pasar tu información a Zoe Nube, necesitas el acompañamiento de Soporte Técnico. El equipo revisará tu caso, coordinará la migración y te indicará cómo preparar los datos.
+Si trabajas actualmente con Optimun y quieres pasar tu información a Zoe Nube, necesitas el acompañamiento de Soporte Técnico. El equipo revisará tu caso, coordinará la migración y te indicará cómo preparar los datos.
 
 ### Pasos para solicitar la migración
 
 1. [Comunícate con Soporte Técnico](https://api.whatsapp.com/send/?phone=573176353182&text&type=phone_number&app_absent=0).
-2. Indica que utilizas Optimum de escritorio y deseas migrar a Zoe Nube.
+2. Indica que utilizas Optimun de escritorio y deseas migrar a Zoe Nube.
 3. Comparte los datos de contacto y de la empresa que el equipo te solicite.
 4. Agenda con Soporte la fecha y hora para revisar y migrar la información.
 5. Sigue las instrucciones del equipo antes de realizar cambios o respaldos adicionales.
 
-> La migración requiere acompañamiento técnico. No intentes trasladar o modificar la información de Optimum sin las indicaciones de Soporte.
+> La migración requiere acompañamiento técnico. No intentes trasladar o modificar la información de Optimun sin las indicaciones de Soporte.
 
 ## Escenario 2: quieres explorar Zoe por tu cuenta en modo demo
 

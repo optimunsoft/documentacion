@@ -13,12 +13,14 @@ tags:
   - debito
   - credito
   - retencion
-  - optimum
+  - optimun
   - integracion
+  - pdf
+  - descargar-pdf
   - primeros-pasos
 draft: false
 rag_exclude: false
-last_updated: 2026-08-12
+last_updated: 2026-08-18
 ---
 
 # Cómo hacer tu primer asiento contable
@@ -33,13 +35,14 @@ Registra un comprobante directamente en Contabilidad, agrega sus movimientos dé
 4. [Agregar las líneas](#3-agrega-las-líneas-del-asiento)
 5. [Calcular la retención](#4-calcula-la-retención-cuando-corresponda)
 6. [Cuadrar y crear el asiento](#5-cuadra-y-crea-el-asiento)
-7. [Errores frecuentes](#errores-frecuentes)
+7. [Descargar el comprobante en PDF](#6-descarga-el-comprobante-en-pdf)
+8. [Errores frecuentes](#errores-frecuentes)
 
 ## Cuándo registrar un asiento directamente
 
 Utiliza esta opción para comprobantes que no se originan en el administrativo, por ejemplo una compra de papelería, un documento soporte o el pago de servicios públicos.
 
-> Las ventas, los pagos y otros documentos administrativos se registran en Optimum de escritorio. Después de realizar la integración, aparecerán en Contabilidad y no deben digitarse nuevamente.
+> Las ventas, los pagos y otros documentos administrativos se registran en Optimun de escritorio. Después de realizar la integración, aparecerán en Contabilidad y no deben digitarse nuevamente.
 
 ## Requisitos previos
 
@@ -90,9 +93,17 @@ Revisa los totales al final del comprobante. El **Total débito** y el **Total c
 
 Cuando las sumas sean iguales, selecciona **Crear**. El comprobante aparecerá en el listado con su número, fecha, total, descripción, tercero y estado.
 
+### 6. Descarga el comprobante en PDF
+
+Una vez creado el asiento, puedes previsualizar el comprobante y descargarlo en formato PDF para conservarlo como soporte o compartirlo.
+
+1. Ubica el comprobante en el listado de **Comprobantes**.
+2. En la barra de acciones, selecciona **Descargar PDF**.
+3. Revisa la previsualización del comprobante y confirma la descarga.
+
 ## Resultado esperado
 
-El comprobante queda creado, contabilizado y disponible en el listado de **Comprobantes** para consultarlo o realizar las acciones permitidas.
+El comprobante queda creado, contabilizado y disponible en el listado de **Comprobantes** para consultarlo, descargarlo en PDF o realizar las acciones permitidas.
 
 ## Errores frecuentes
 
@@ -117,3 +128,4 @@ Revisa que todos los campos obligatorios estén completos y que la diferencia en
 - [Primeros pasos con Contabilidad](./primeros-pasos.md)
 - [Cómo crear tu primera empresa (demo)](./crear-primera-empresa.md)
 - [Cómo configurar tu Plan Único de Cuentas (PUC)](./configurar-puc.md)
+- [Cómo generar reportes básicos para validar tu información](./reportes-basicos.md)
