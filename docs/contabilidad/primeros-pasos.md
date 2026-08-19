@@ -42,15 +42,27 @@ El modo demo te permite conocer el flujo general de la aplicación antes de trab
 
 ### Pasos para comenzar
 
-1. Ingresa a la plataforma de Zoe Nube.
-2. Selecciona la opción disponible para registrar o activar una cuenta demo.
-3. Completa la información solicitada y confirma el registro.
-4. Inicia sesión con las credenciales de la cuenta demo.
-5. Continúa con las siguientes guías en el orden recomendado:
+#### 1. Ingresa al sitio de Zoe
 
-   1. [Cómo crear tu primera empresa (demo)](./crear-primera-empresa-demo.md)
-   2. [Cómo configurar tu Plan Único de Cuentas (PUC)](./configurar-puc.md)
-   3. [Cómo hacer tu primer asiento contable](./primer-asiento-contable.md)
+Ingresa a [zoenube.com](https://www.zoenube.com/) y selecciona **Empresa Gratis**.
+
+#### 2. Registra la cuenta demo
+
+Registra la cuenta con tu correo electrónico y una contraseña, o utiliza la opción de Google.
+
+#### 3. Completa tus datos personales
+
+Completa tus datos personales y selecciona **Continuar**.
+
+#### 4. Verifica tu cuenta
+
+Abre el correo enviado por Zoe y selecciona **Verificar mi cuenta**.
+
+### Continúa con estas guías
+
+1. [Cómo crear tu primera empresa (demo)](./crear-primera-empresa.md)
+2. [Cómo configurar tu Plan Único de Cuentas (PUC)](./configurar-puc.md)
+3. [Cómo hacer tu primer asiento contable](./primer-asiento-contable.md)
 
 ## Escenario 3: prefieres una demo guiada
 
@@ -58,14 +70,20 @@ Puedes solicitar una sesión personalizada para que el equipo te presente Zoe y 
 
 ### Pasos para agendar la sesión
 
-1. Ve a la página principal de la aplicación.
-2. Haz clic en **Agenda tu Demo**.
-3. Completa tus datos de contacto.
-4. Selecciona la fecha y hora disponibles para la capacitación.
-5. Confirma la solicitud y revisa el medio de contacto registrado.
+#### 1. Ingresa a la página de Zoe
+
+Ve a [zoenube.com](https://www.zoenube.com/) y selecciona **Agenda tu Demo**.
+
+#### 2. Completa la solicitud
+
+Completa tus datos de contacto, selecciona la fecha y hora disponibles y elige **Contabilidad Nube**. Después, selecciona **Solicitar demostración gratuita**.
+
+#### 3. Confirma el envío
+
+Cuando aparezca el mensaje **¡Solicitud enviada!**, selecciona **Aceptar**. Un asesor se pondrá en contacto contigo para confirmar la demo.
 
 ## Recursos relacionados
 
-- [Cómo crear tu primera empresa (demo)](./crear-primera-empresa-demo.md)
+- [Cómo crear tu primera empresa (demo)](./crear-primera-empresa.md)
 - [Cómo configurar tu Plan Único de Cuentas (PUC)](./configurar-puc.md)
 - [Cómo hacer tu primer asiento contable](./primer-asiento-contable.md)
