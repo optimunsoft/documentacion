@@ -82,7 +82,7 @@ Los tipos de documento pertenecen al **año fiscal**, no a la empresa. Cada año
 | Tipos de documento | Por año fiscal |
 | PUC (Plan Único de Cuentas) | Por año fiscal |
 | Comprobantes | Por año fiscal |
-| Centros de costo | Global |
+| Centros de costo | Por año fiscal |
 | Terceros | Global |
 
 **Consecuencia práctica:** un tipo de documento creado en un año fiscal solo existe en ese año. Ver [Comportamiento al abrir un año fiscal nuevo](#comportamiento-al-abrir-un-año-fiscal-nuevo).
