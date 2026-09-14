@@ -28,6 +28,11 @@ tags:
   - activar-desactivar-edicion-de-comprobante
   - mover-saldos-entre-cuentas
   - auditoria-de-operacion
+  - fijar-mes
+  - cierre-de-ano
+  - tipo-de-documento-ca
+  - ano-fiscal-origen
+  - ano-fiscal-destino
   - periodo-abierto
   - periodo-cerrado
   - comprobantes
@@ -150,9 +155,11 @@ En el **contenedor azul del sidebar**, junto a la palabra «Contabilidad». Mues
 
 ### Fijación del mes de trabajo
 
-Es posible **fijar un mes** al crear asientos. Cuando hay un mes fijado, solo se pueden registrar comprobantes dentro de ese periodo, lo que reduce los errores de digitación al capturar muchos movimientos consecutivos del mismo mes.
+El año se selecciona desde el sidebar, pero **el mes se fija dentro del propio formulario del comprobante**, no en la ventana Configuración de año fiscal.
 
-TODO(dato): confirmar desde qué pantalla se fija el mes de trabajo y cómo se retira la fijación. La ventana **Configuración de año fiscal** verificada en la interfaz contiene únicamente el campo **Año**.
+**Ubicación:** campo **Fijar mes**, primer campo del formulario del asiento, a la izquierda de **Fecha**. Es una lista desplegable con los meses del año y lleva debajo un ícono de información.
+
+**Efecto:** cuando hay un mes fijado, solo se pueden registrar asientos dentro de ese periodo, lo que reduce los errores de digitación al capturar muchos movimientos consecutivos del mismo mes.
 
 ## Elementos de la pantalla Acciones Especiales
 
@@ -360,11 +367,14 @@ Secuencia recomendada cuando ya existe un año fiscal con movimientos y comienza
 | 2 | Seleccionarlo como año activo | Contenedor del sidebar o `Alt + A` |
 | 3 | Cargar el PUC del año anterior | `Configuración > PUC`, opción **Cargar Puc Año Anterior** |
 | 4 | Crear los centros de costo del año | `Configuración > Centros de Costo` |
-| 5 | Trasladar los saldos | `Especiales > Comprobantes > Mover Saldos Finales a Iniciales` |
-| 6 | Registrar los comprobantes del año | `Contabilidad > Comprobantes`, en meses abiertos |
-| 7 | Cerrar cada mes conciliado | `Especiales > Periodos > Gestionar periodos contables` |
-| 8 | Cerrar el año al terminar el ejercicio | `Especiales > Periodos > Gestionar periodos contables` |
-| 9 | Verificar la trazabilidad de los cierres | `Especiales > Periodos > Historial` |
+| 5 | Registrar el asiento de cierre del año anterior | `Especiales > Comprobantes > Cierre anual` |
+| 6 | Trasladar los saldos | `Especiales > Comprobantes > Mover Saldos Finales a Iniciales` |
+| 7 | Registrar los comprobantes del año | `Contabilidad > Comprobantes`, en meses abiertos |
+| 8 | Cerrar cada mes conciliado | `Especiales > Periodos > Gestionar periodos contables` |
+| 9 | Cerrar el año al terminar el ejercicio | `Especiales > Periodos > Gestionar periodos contables` |
+| 10 | Verificar la trazabilidad de los cierres | `Especiales > Periodos > Historial` |
+
+**Restricción de orden entre los pasos 5 y 8.** El cierre anual es un comprobante con fecha del 31 de diciembre, de modo que exige diciembre abierto. Debe registrarse **antes** de cerrar los periodos del año que se está cerrando; de lo contrario habrá que reabrirlos para poder ejecutarlo.
 
 **No es necesario cerrar el año anterior para empezar el nuevo.** Ambos años pueden permanecer abiertos mientras se termina de cuadrar el anterior. Alternar entre los dos es una operación normal durante los primeros meses del año, y se resuelve cambiando el año activo.
 
@@ -374,11 +384,45 @@ Secuencia recomendada cuando ya existe un año fiscal con movimientos y comienza
 
 ### Mover Saldos Finales a Iniciales
 
+**Ruta:** `Contabilidad > Configuración > Especiales > Comprobantes > Mover Saldos Finales a Iniciales`.
+
 Traslada los saldos de cierre de un año fiscal a los saldos iniciales del año siguiente. Es el proceso que conecta un ejercicio con el siguiente y **no tiene relación con la apertura o el cierre de periodos**: no cambia el estado de ningún mes.
+
+Abre una ventana con el subtítulo «Transfiere saldos finales a iniciales».
+
+**Campos de la ventana:**
+
+| Campo | Tipo | Obligatorio | Descripción |
+| --- | --- | --- | --- |
+| **Año fiscal origen** | Lista desplegable | Sí | Año del que se toman los saldos finales. |
+| **Año fiscal destino** | Lista desplegable | Sí | Año al que se transfieren como saldos iniciales. |
+| **Cancelar** | Botón | — | Cierra la ventana sin ejecutar el proceso. |
+| **Guardar** | Botón | — | Ejecuta la transferencia. |
+
+**Independencia del año activo:** origen y destino se eligen en la propia ventana, de modo que el proceso puede ejecutarse desde cualquier año fiscal activo. Conviene verificar el orden de los dos campos antes de guardar, porque son visualmente idénticos.
 
 ### Cierre anual
 
-Proceso contable de cierre del ejercicio. Es distinto de **cerrar el año fiscal** desde *Gestionar periodos contables*: esta última acción bloquea el registro de movimientos, mientras que el Cierre anual ejecuta el procedimiento contable del cierre.
+**Ruta:** `Contabilidad > Configuración > Especiales > Comprobantes > Cierre anual`.
+
+Proceso contable de cierre del ejercicio. Es distinto de **cerrar el año fiscal** desde *Gestionar periodos contables*: esta última acción bloquea el registro de movimientos, mientras que el Cierre anual registra el asiento contable del cierre.
+
+**No abre un formulario de configuración sino un comprobante.** La opción abre la pantalla **Nuevo CA - Cierre De Año**, con el subtítulo «Complete los datos del asiento contable». Es el formulario estándar de comprobante, precargado para el cierre.
+
+**Valores precargados del encabezado:**
+
+| Campo | Valor |
+| --- | --- |
+| **Fijar mes** | Diciembre. |
+| **Fecha** | 31 de diciembre del año fiscal activo. |
+| **Tipo de documento** | **CA - Cierre de año**, uno de los tipos reservados de la plataforma. |
+| **Descripción** | «Cierre de ejercicio fiscal [año]». |
+
+**Indicador de periodo:** la pantalla muestra junto al título la etiqueta **Periodo abierto** o **Periodo cerrado**, igual que cualquier comprobante.
+
+**Resto del formulario:** tabla **Cuentas del asiento** con las columnas habituales (cuenta, concepto, factura, tercero, centro de costo, débito y crédito), el botón **Agregar línea**, el resumen de **Total débito**, **Total crédito** y **Diferencia**, y los botones **Cancelar** y **Crear**. Como en cualquier asiento, la diferencia debe quedar en cero para poder grabarlo.
+
+**Regla de negocio derivada: el cierre anual exige diciembre abierto.** Al tratarse de un comprobante con fecha del 31 de diciembre, está sujeto a las mismas validaciones de periodo que cualquier otro asiento. Si diciembre o el año fiscal están cerrados, el cierre anual no se puede crear. El orden correcto es registrar primero el asiento de cierre y cerrar los periodos después.
 
 ### Activar/Desactivar Edición de Comprobante
 
@@ -425,6 +469,14 @@ Dos causas posibles: el mes está cerrado, o la fecha no pertenece al año fisca
 
 Su fecha corresponde a un mes cerrado. El cierre de periodo bloquea tanto el registro de movimientos nuevos como la modificación de los anteriores. Debe abrirse el mes en `Especiales > Periodos > Gestionar periodos contables` o, si el bloqueo no proviene del periodo, revisarse la opción **Activar/Desactivar Edición de Comprobante** del panel Comprobantes.
 
+### El Cierre anual no se puede crear
+
+El Cierre anual es un comprobante con fecha del 31 de diciembre y está sujeto a las mismas validaciones de periodo que cualquier asiento. Si diciembre o el año fiscal completo están cerrados, no se puede grabar. Debe abrirse diciembre en `Especiales > Periodos > Gestionar periodos contables`, registrar el cierre y volver a cerrar el periodo.
+
+### Los saldos iniciales del año nuevo no aparecen
+
+No se ha ejecutado **Mover Saldos Finales a Iniciales**, o se ejecutó con los años invertidos. En la ventana, **Año fiscal origen** debe ser el año que se cierra y **Año fiscal destino** el que comienza.
+
 ### La ventana Periodos Contables no muestra los meses
 
 Dos causas posibles: no se ha seleccionado un año en el desplegable **Buscar Año**, en cuyo caso el cuerpo muestra el texto «Selecciona un año»; o el año seleccionado está cerrado, y entonces aparece el aviso **«Año fiscal cerrado — No se pueden abrir o cerrar meses»**. En el segundo caso debe pulsarse **Abrir año**.
@@ -460,7 +512,10 @@ No la elimina. El aviso de la propia opción lo declara: «Ya no tendrás dispon
 | 17 | El PUC, los tipos de documento, los centros de costo, los anexos, los comprobantes y los reportes pertenecen al año fiscal. Los terceros pertenecen a la empresa. |
 | 18 | Todas las aperturas y los cierres quedan registrados en el **Historial de movimientos**, con su usuario, su fecha y si el evento fue una apertura o un cierre. |
 | 19 | Cerrar el año fiscal no es lo mismo que ejecutar el Cierre anual contable. |
-| 20 | Bloquear la edición de comprobantes no es cerrar un periodo. |
+| 20 | El Cierre anual es un comprobante con fecha del 31 de diciembre y tipo de documento CA, sujeto a las validaciones de periodo: exige diciembre abierto. |
+| 21 | Mover Saldos Finales a Iniciales toma el año origen y el año destino de su propia ventana, con independencia del año fiscal activo. |
+| 22 | El mes de trabajo se fija en el campo **Fijar mes** del formulario del comprobante, no en la ventana Configuración de año fiscal. |
+| 23 | Bloquear la edición de comprobantes no es cerrar un periodo. |
 
 ## Preguntas frecuentes
 
@@ -552,10 +607,25 @@ Sí, por dos vías. La fila del mes en **Periodos Contables** muestra «Cerrado 
 No. Ambos años pueden estar abiertos al mismo tiempo mientras se termina de cuadrar el anterior.
 
 **¿Cómo pasan los saldos de un año al siguiente?**
-Con la opción **Mover Saldos Finales a Iniciales** del panel Comprobantes de Acciones Especiales.
+Con la opción **Mover Saldos Finales a Iniciales** del panel Comprobantes de Acciones Especiales, indicando el **Año fiscal origen** y el **Año fiscal destino**.
+
+**¿Hay que estar parado en algún año para mover los saldos?**
+No. La ventana pide el año origen y el año destino, así que el proceso se ejecuta desde cualquier año fiscal activo.
 
 **¿Cerrar el año fiscal es lo mismo que el Cierre anual?**
-No. Cerrar el año fiscal bloquea el registro de movimientos. El **Cierre anual** es el proceso contable de cierre del ejercicio.
+No. Cerrar el año fiscal bloquea el registro de movimientos. El **Cierre anual** registra el asiento contable de cierre del ejercicio.
+
+**¿Qué abre la opción Cierre anual?**
+Un comprobante: la pantalla **Nuevo CA - Cierre De Año**, con el tipo de documento **CA - Cierre de año**, la fecha en el 31 de diciembre y el mes fijado en Diciembre. Se diligencia como cualquier asiento y se graba con **Crear**.
+
+**¿Por qué el Cierre anual no se deja crear?**
+Porque diciembre o el año fiscal están cerrados. Al ser un comprobante con fecha del 31 de diciembre, necesita ese periodo abierto.
+
+**¿Qué va primero, el cierre anual o cerrar los periodos?**
+El cierre anual. Si se cierran los periodos antes, hay que reabrir diciembre para poder registrarlo.
+
+**¿Dónde se fija el mes de trabajo?**
+En el campo **Fijar mes** del formulario del comprobante, a la izquierda de la fecha. No está en la ventana Configuración de año fiscal, que solo tiene el campo Año.
 
 **¿Bloquear la edición de un comprobante cierra el periodo?**
 No. Son controles distintos: cerrar un periodo impide registrar movimientos con fecha de ese mes, y bloquear la edición impide modificar comprobantes concretos.
