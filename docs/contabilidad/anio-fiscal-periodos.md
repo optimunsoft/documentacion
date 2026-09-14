@@ -1,6 +1,6 @@
 ---
 title: Años fiscales y periodos contables
-description: Gestión del año fiscal y de los periodos contables mensuales en el módulo de Contabilidad. Cubre el concepto de año fiscal como contenedor del trabajo contable, la inicialización automática del año al crear una empresa, el cambio del año fiscal activo desde el sidebar y con el atajo Alt+A, la habilitación y el retiro de años fiscales desde Configuración > Especiales, la apertura y el cierre de meses y del año completo, el historial de aperturas y cierres, las validaciones de fecha y de periodo al registrar comprobantes, el alcance anual del PUC, los centros de costo, los anexos, los tipos de documento y los reportes, el ciclo completo de inicio de un año nuevo con el traslado de saldos, y las herramientas complementarias del panel Comprobantes de Acciones Especiales.
+description: Gestión del año fiscal y de los periodos contables mensuales en el módulo de Contabilidad. Cubre el concepto de año fiscal como contenedor del trabajo contable, la inicialización automática del año al crear una empresa, el cambio del año fiscal activo desde el sidebar y con el atajo Alt+A, la habilitación y el retiro de años fiscales desde Configuración > Especiales, la ventana Periodos Contables con la apertura y el cierre de meses y del año completo, el aviso de año fiscal cerrado, la trazabilidad del cierre en la fila de cada mes, el historial de aperturas y cierres, las validaciones de fecha y de periodo al registrar comprobantes y el bloqueo de la edición de comprobantes existentes en periodos cerrados, el alcance anual del PUC, los centros de costo, los anexos, los tipos de documento y los reportes, el ciclo completo de inicio de un año nuevo con el traslado de saldos, y las herramientas complementarias del panel Comprobantes de Acciones Especiales.
 module: contabilidad
 category: configuracion
 slug: anio-fiscal-periodos
@@ -13,7 +13,7 @@ tags:
   - periodo-contable
   - periodos-contables
   - agregar-ano-fiscal
-  - eliminar-ano-fiscal
+  - quitar-ano-fiscal
   - gestionar-periodos-contables
   - abrir-periodo
   - cerrar-periodo
@@ -25,6 +25,11 @@ tags:
   - alt-a
   - saldos-iniciales
   - mover-saldos-finales-a-iniciales
+  - activar-desactivar-edicion-de-comprobante
+  - mover-saldos-entre-cuentas
+  - auditoria-de-operacion
+  - periodo-abierto
+  - periodo-cerrado
   - comprobantes
   - puc
   - centros-de-costo
@@ -53,7 +58,7 @@ La contabilidad en Zoe está organizada por años y, dentro de cada año, por me
 6. [El año fiscal activo](#el-año-fiscal-activo)
 7. [Elementos de la pantalla Acciones Especiales](#elementos-de-la-pantalla-acciones-especiales)
 8. [Agregar un año fiscal](#agregar-un-año-fiscal)
-9. [Eliminar un año fiscal](#eliminar-un-año-fiscal)
+9. [Quitar un año fiscal](#quitar-un-año-fiscal)
 10. [Gestionar periodos contables](#gestionar-periodos-contables)
 11. [Historial de aperturas y cierres](#historial-de-aperturas-y-cierres)
 12. [Validaciones al registrar un comprobante](#validaciones-al-registrar-un-comprobante)
@@ -69,15 +74,15 @@ La contabilidad en Zoe está organizada por años y, dentro de cada año, por me
 - **Ruta de menú:** `Contabilidad > Configuración > Especiales`.
 - **Ruta de navegación mostrada en la pantalla (breadcrumb):** `PANEL / CONFIGURACIÓN / ESPECIALES`.
 - **Título de la pantalla:** «Acciones Especiales».
-- **Subtítulo de la pantalla:** «Gestiona periodos fiscales, saldos iniciales y procesos de cierre contable».
-- **Banner informativo de la pantalla:** «Gestión de periodos fiscales, saldos iniciales y procesos de cierre.»
+- **Subtítulo de la pantalla:** «Gestiona periodos fiscales, saldos iniciales y procesos de cierre contable, además de otras opciones que sólo encontrarás aquí».
+- **Contenido de la pantalla:** tres paneles, **Periodos**, **Comprobantes** y **Terceros**. Cada opción dispone de un ícono de información que despliega un aviso con el efecto de la acción.
 
 **Rutas complementarias:**
 
 | Proceso | Ruta |
 | --- | --- |
 | Agregar un año fiscal | `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Agregar año fiscal` |
-| Quitar un año fiscal | `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Eliminar año fiscal` |
+| Quitar un año fiscal | `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Quitar año fiscal` |
 | Abrir o cerrar meses y el año | `Contabilidad > Configuración > Especiales > Periodos > Periodos contables > Gestionar periodos contables` |
 | Consultar aperturas y cierres | `Contabilidad > Configuración > Especiales > Periodos > Historial` |
 | Cambiar el año fiscal activo | Contenedor azul del año en el sidebar del menú Contabilidad, o atajo `Alt + A` |
@@ -158,7 +163,7 @@ La pantalla agrupa sus opciones en tres paneles.
 | Grupo | Opción | Función |
 | --- | --- | --- |
 | Años fiscales | **Agregar año fiscal** | Habilita otro año para trabajar en él. |
-| Años fiscales | **Eliminar año fiscal** | Retira un año de la lista de trabajo. No elimina la información grabada. |
+| Años fiscales | **Quitar año fiscal** | Retira un año de la lista de trabajo. No elimina la información grabada. |
 | Periodos contables | **Gestionar periodos contables** | Abre y cierra los meses del año y el año completo. |
 | — | **Historial** | Consulta de las aperturas y los cierres realizados. |
 
@@ -170,6 +175,9 @@ La pantalla agrupa sus opciones en tres paneles.
 | **Cierre anual** | Proceso contable de cierre del ejercicio. |
 | **Comprobantes en proceso** | Comprobantes que aún no están contabilizados en firme. |
 | **Mover Saldos Finales a Iniciales** | Traslada los saldos de cierre de un año a los saldos iniciales del siguiente. |
+| **Activar/Desactivar Edición de Comprobante** | Habilita o bloquea la edición de comprobantes. No es un cierre de periodo. |
+| **Mover saldos entre cuentas** | Traslada el movimiento de una cuenta del PUC a otra. |
+| **Auditoría de Operación** | Consulta de las operaciones realizadas en la empresa. |
 
 **Panel Terceros:**
 
@@ -205,11 +213,11 @@ Se abre la ventana **Agregar año fiscal**, con el subtítulo «Crea un nuevo pe
 | Centros de costo | No se heredan. Deben crearse de nuevo en el año. |
 | Terceros | Siguen disponibles: pertenecen a la empresa, no al año. |
 
-## Eliminar un año fiscal
+## Quitar un año fiscal
 
-**Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Eliminar año fiscal`.
+**Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Quitar año fiscal`.
 
-Se abre la ventana **Eliminar año fiscal**, con el subtítulo «Quita un periodo de tu lista».
+Se abre una ventana con el subtítulo «Quita un periodo de tu lista».
 
 **Campos de la ventana:**
 
@@ -217,9 +225,11 @@ Se abre la ventana **Eliminar año fiscal**, con el subtítulo «Quita un period
 | --- | --- | --- | --- |
 | **Año** | Lista desplegable | Sí | Año que se desea retirar de la lista. |
 | **Cancelar** | Botón | — | Cierra la ventana sin retirar el año. |
-| **Eliminar** | Botón | — | Retira el año seleccionado. |
+| Botón de confirmación | Botón | — | Retira el año seleccionado. |
 
-**Confirmación:** la plataforma muestra el aviso **«Operación exitosa — Año fiscal eliminado correctamente»**.
+**Confirmación:** la plataforma muestra un aviso de operación exitosa indicando que el año fiscal fue retirado.
+
+TODO(dato): confirmar contra la interfaz actual el título exacto de la ventana, la etiqueta de su botón de confirmación y el texto del aviso de éxito. La opción del menú se denominaba «Eliminar año fiscal» en versiones anteriores y hoy se denomina **«Quitar año fiscal»**; las grabaciones disponibles de esa ventana corresponden a la versión anterior.
 
 **Alcance real de la acción.** El aviso informativo de la opción lo declara de forma explícita: **«Ya no tendrás disponible este año fiscal. NO se eliminará la información que hayas grabado.»** Retirar un año lo saca de la lista de trabajo y del selector del sidebar; los comprobantes, el PUC y los demás datos de ese año se conservan. Si el año vuelve a agregarse más adelante, su información sigue disponible.
 
@@ -228,8 +238,8 @@ Se abre la ventana **Eliminar año fiscal**, con el subtítulo «Quita un period
 **Procedimiento correcto:**
 
 1. Cambiar el año activo a otro año desde el contenedor del sidebar o con `Alt + A`.
-2. Volver a `Especiales > Periodos > Años fiscales > Eliminar año fiscal`.
-3. Seleccionar el año que se desea retirar y confirmar con **Eliminar**.
+2. Volver a `Especiales > Periodos > Años fiscales > Quitar año fiscal`.
+3. Seleccionar el año que se desea retirar y confirmar.
 
 **Para qué se usa:** para mantener limpio el selector de años. Sirve cuando se habilitó un año por error, o cuando se trabajaron años antiguos durante una migración y mantenerlos visibles aumenta el riesgo de que alguien registre movimientos en el año equivocado.
 
@@ -237,30 +247,50 @@ Se abre la ventana **Eliminar año fiscal**, con el subtítulo «Quita un period
 
 **Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Periodos contables > Gestionar periodos contables`.
 
-Es la pantalla de control del estado de los periodos del año fiscal activo.
+Abre la ventana **Periodos Contables**, con el subtítulo «Consulta y gestiona el estado de apertura y cierre de los periodos». Es el control del estado de los periodos.
+
+**Selección del año.** La ventana se abre sin año seleccionado: la ficha superior muestra «Sin estado · 0 meses abiertos» y el cuerpo el texto «Selecciona un año». El desplegable **Buscar Año** lista los años fiscales habilitados, cada uno con su estado al lado.
+
+**Regla de negocio: la ventana no está limitada al año fiscal activo.** Se puede gestionar el estado de los periodos de cualquier año habilitado sin cambiar el año de trabajo. Es la excepción a la dependencia general del año fiscal activo que rige en el resto del módulo.
+
+**Elementos de la ventana, una vez seleccionado el año:**
+
+| Elemento | Contenido |
+| --- | --- |
+| Ficha del año | El año, la etiqueta **AÑO FISCAL**, el estado (**Abierto** o **Cerrado**), el contador «N meses abiertos» y la barra **Progreso del año** con el indicador `N/12` de meses cerrados. |
+| Desplegable **Buscar Año** | Cambia el año cuyos periodos se están gestionando. |
+| Botón del año | **Cerrar año** cuando está abierto; **Abrir año** cuando está cerrado. |
+| **Detalle de Periodos** | Encabezado con el contador «12 periodos» y la lista de los doce meses. |
+| Fila de cada mes | Número de periodo (01–12), nombre del mes, etiqueta de estado **Abierto** o **Cerrado** y botón **Cerrar** o **Abrir** según corresponda. |
+
+**Trazabilidad en la propia fila.** Cuando un mes está cerrado, su fila muestra además **«Cerrado por: [usuario]»** y **«Fecha: [aaaa-mm-dd]»**. La autoría del cierre de un mes concreto se consulta ahí mismo, sin necesidad de abrir el Historial.
 
 **Acciones disponibles:**
 
 | Acción | Alcance |
 | --- | --- |
-| **Abrir mes** | Habilita el registro de movimientos con fecha de ese mes. |
-| **Cerrar mes** | Impide registrar movimientos con fecha de ese mes. |
-| **Abrir año** | Habilita el año fiscal y, con él, la gestión de sus meses. |
-| **Cerrar año** | Deja el año fiscal en firme e inmoviliza sus periodos mensuales. |
+| **Cerrar** (mes) | Impide registrar y modificar movimientos con fecha de ese mes. |
+| **Abrir** (mes) | Vuelve a habilitar el mes. |
+| **Cerrar año** | Deja el año fiscal en firme y retira la gestión de sus periodos mensuales. |
+| **Abrir año** | Devuelve la lista de meses, cada uno en el estado en que quedó. |
+
+**Confirmación:** el cierre de un mes es inmediato, sin diálogo de confirmación previo. La plataforma responde con el aviso **«Operación exitosa — Mes cerrado correctamente»**. La acción es reversible con el botón **Abrir** de la misma fila.
 
 **Independencia de los meses:** cada mes se abre y se cierra por separado. Un año fiscal puede tener simultáneamente meses cerrados y meses abiertos.
 
-**Regla de negocio: el año condiciona los meses.** Con el **año fiscal cerrado no es posible abrir ni cerrar meses**. Los controles mensuales dejan de responder. Para modificar el estado de un mes de un año cerrado, primero debe abrirse el año.
+**Regla de negocio: el año condiciona los meses.** Al cerrar el año fiscal, la sección **Detalle de Periodos** deja de mostrar la lista de meses y en su lugar aparece un ícono de candado con los textos **«Año fiscal cerrado»** y **«No se pueden abrir o cerrar meses»**. No se trata de controles deshabilitados: los controles mensuales desaparecen. Para modificar el estado de un mes de un año cerrado hay que abrir primero el año.
 
-**Finalidad del cierre mensual:** proteger la información ya conciliada y reportada. Un mes cerrado no admite el registro de movimientos nuevos, lo que impide alterar cifras que ya se entregaron o declararon.
+**Cerrar y abrir el año no altera el estado individual de los meses:** al volver a abrir el año, la lista reaparece con cada mes tal como estaba.
 
-TODO(dato): documentar los elementos exactos de la ventana **Gestionar periodos contables** (denominación de los controles de estado, mensajes de confirmación y forma en que se representa el estado de cada mes).
+**Finalidad del cierre mensual:** proteger la información ya conciliada y reportada. Un mes cerrado no admite el registro de movimientos nuevos ni la modificación de los existentes, lo que impide alterar cifras que ya se entregaron o declararon.
 
 ## Historial de aperturas y cierres
 
 **Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Historial`.
 
-Registra la trazabilidad de los cambios de estado de los periodos.
+Registra la trazabilidad de los cambios de estado de los periodos de la empresa.
+
+**Diferencia con la información de la fila del mes:** la ventana **Periodos Contables** indica quién cerró cada mes y cuándo, pero solo del estado vigente. El **Historial** recoge la secuencia completa de aperturas y cierres, incluidos los de los meses que después volvieron a abrirse y los del año completo.
 
 **Información que registra:**
 
@@ -284,7 +314,11 @@ Al registrar un comprobante en `Contabilidad > Comprobantes`, la fecha debe cump
 | 1 | La fecha debe pertenecer al **año fiscal activo**. | El comprobante no se puede grabar con una fecha de otro año. |
 | 2 | El mes de la fecha debe estar **abierto**. | El comprobante no se puede grabar en un mes cerrado. |
 
-**Indicador en la interfaz:** la pantalla del comprobante muestra el estado del periodo correspondiente a la fecha capturada, con los textos **Periodo abierto** o **Periodo cerrado**. El indicador reacciona al cambiar la fecha.
+**Indicador en la interfaz:** la pantalla del comprobante muestra el estado del periodo correspondiente a la fecha capturada, con los textos **Periodo abierto** o **Periodo cerrado**. Cuando el periodo está cerrado, la etiqueta aparece en ámbar junto al título de la ventana, antes de cualquier intento de guardado.
+
+**Mensaje de error al guardar:** si se intenta grabar de todos modos, la plataforma responde con **«Ocurrió un error — No se pueden realizar operaciones contables en [mes] de [año]. El periodo está cerrado.»** y no persiste ningún cambio.
+
+**Regla de negocio: el cierre también bloquea la edición.** La restricción no se limita a los movimientos nuevos. Un comprobante ya existente cuya fecha cae en un mes cerrado tampoco se puede modificar: al abrirlo aparece la etiqueta **Periodo cerrado** y cualquier cambio guardado con **Actualizar** devuelve el mismo error. Es lo que da sentido al cierre como mecanismo de protección.
 
 **Qué hacer cuando aparece «Periodo cerrado»:** existen dos salidas, y la elección depende de si la fecha es correcta.
 
@@ -341,18 +375,24 @@ Traslada los saldos de cierre de un año fiscal a los saldos iniciales del año 
 
 Proceso contable de cierre del ejercicio. Es distinto de **cerrar el año fiscal** desde *Gestionar periodos contables*: esta última acción bloquea el registro de movimientos, mientras que el Cierre anual ejecuta el procedimiento contable del cierre.
 
-### Activar o desactivar la edición de comprobantes
+### Activar/Desactivar Edición de Comprobante
 
-Existe un control para habilitar o bloquear la edición de comprobantes de integración.
+Opción propia del panel **Comprobantes** de Acciones Especiales. Habilita o bloquea la edición de comprobantes.
 
 **Aclaración necesaria: bloquear la edición de comprobantes no es cerrar un periodo.** Son mecanismos con alcances distintos:
 
-| Mecanismo | Qué impide |
-| --- | --- |
-| Cerrar un periodo | Registrar movimientos con fecha de ese mes. |
-| Bloquear la edición de comprobantes | Modificar comprobantes concretos, con el periodo abierto o cerrado. |
+| Mecanismo | Qué impide | Dónde se controla |
+| --- | --- | --- |
+| Cerrar un periodo | Registrar y modificar movimientos con fecha de ese mes. | `Especiales > Periodos > Gestionar periodos contables` |
+| Activar/Desactivar Edición de Comprobante | Modificar comprobantes, con independencia del estado del periodo. | `Especiales > Comprobantes > Activar/Desactivar Edición de Comprobante` |
 
-TODO(dato): confirmar el nombre y la ubicación exacta de la opción de activar o desactivar la edición de comprobante en Acciones Especiales, y si corresponde a la opción **Comprobantes en proceso** del panel Comprobantes.
+### Mover saldos entre cuentas
+
+Traslada el movimiento registrado en una cuenta del PUC a otra cuenta. No guarda relación con el estado de los periodos.
+
+### Auditoría de Operación
+
+Consulta de las operaciones realizadas en la empresa. Es distinta del **Historial** del panel Periodos, que se limita a las aperturas y los cierres de periodos.
 
 ## Solución de problemas
 
@@ -374,11 +414,15 @@ Es el comportamiento esperado. Agregar un año fiscal solo lo habilita: no crea 
 
 ### El comprobante no se deja grabar en una fecha determinada
 
-Dos causas posibles: el mes está cerrado, o la fecha no pertenece al año fiscal activo. El indicador **Periodo abierto** / **Periodo cerrado** de la pantalla del comprobante señala la primera; el contenedor del sidebar, la segunda.
+Dos causas posibles: el mes está cerrado, o la fecha no pertenece al año fiscal activo. La etiqueta **Periodo cerrado** junto al título de la ventana señala la primera; el contenedor azul del sidebar, la segunda. El mensaje que devuelve la plataforma es «No se pueden realizar operaciones contables en [mes] de [año]. El periodo está cerrado.»
 
-### No es posible abrir ni cerrar meses
+### No se puede editar un comprobante ya existente
 
-El año fiscal está cerrado, y con el año cerrado los controles mensuales no responden. Debe abrirse primero el año en `Especiales > Periodos > Gestionar periodos contables`.
+Su fecha corresponde a un mes cerrado. El cierre de periodo bloquea tanto el registro de movimientos nuevos como la modificación de los anteriores. Debe abrirse el mes en `Especiales > Periodos > Gestionar periodos contables` o, si el bloqueo no proviene del periodo, revisarse la opción **Activar/Desactivar Edición de Comprobante** del panel Comprobantes.
+
+### La ventana Periodos Contables no muestra los meses
+
+Dos causas posibles: no se ha seleccionado un año en el desplegable **Buscar Año**, en cuyo caso el cuerpo muestra el texto «Selecciona un año»; o el año seleccionado está cerrado, y entonces aparece el aviso **«Año fiscal cerrado — No se pueden abrir o cerrar meses»**. En el segundo caso debe pulsarse **Abrir año**.
 
 ### Un mes que se creía cerrado aparece abierto
 
@@ -400,13 +444,18 @@ No la elimina. El aviso de la propia opción lo declara: «Ya no tendrás dispon
 | 6 | Quitar un año fiscal no elimina la información grabada; solo retira el año de la lista de trabajo. |
 | 7 | No se puede quitar el año fiscal en uso. Es necesario cambiarse a otro año primero. |
 | 8 | Cada mes del año se abre y se cierra de forma independiente de los demás. |
-| 9 | Con el año fiscal cerrado no se pueden abrir ni cerrar meses. |
-| 10 | Un comprobante solo se graba si su fecha pertenece al año fiscal activo y cae en un mes abierto. |
-| 11 | La pantalla del comprobante indica el estado del periodo con los textos **Periodo abierto** y **Periodo cerrado**. |
-| 12 | El PUC, los tipos de documento, los centros de costo, los anexos, los comprobantes y los reportes pertenecen al año fiscal. Los terceros pertenecen a la empresa. |
-| 13 | Todas las aperturas y los cierres quedan registrados en el Historial con su usuario, su fecha y su tipo (anual o mensual). |
-| 14 | Cerrar el año fiscal no es lo mismo que ejecutar el Cierre anual contable. |
-| 15 | Bloquear la edición de comprobantes no es cerrar un periodo. |
+| 9 | Con el año fiscal cerrado no se pueden abrir ni cerrar meses: la lista de periodos se reemplaza por el aviso «Año fiscal cerrado». |
+| 10 | Abrir y cerrar el año no altera el estado individual de los meses. |
+| 11 | La ventana Periodos Contables no depende del año fiscal activo: permite gestionar los periodos de cualquier año habilitado. |
+| 12 | El cierre de un mes es inmediato, sin diálogo de confirmación previo, y reversible con el botón **Abrir**. |
+| 13 | Cada mes cerrado conserva en su fila el usuario que lo cerró y la fecha del cierre. |
+| 14 | Un comprobante solo se graba si su fecha pertenece al año fiscal activo y cae en un mes abierto. |
+| 15 | El cierre de un periodo bloquea tanto el registro de movimientos nuevos como la edición de los comprobantes ya existentes con fecha de ese mes. |
+| 16 | La pantalla del comprobante indica el estado del periodo con los textos **Periodo abierto** y **Periodo cerrado**. |
+| 17 | El PUC, los tipos de documento, los centros de costo, los anexos, los comprobantes y los reportes pertenecen al año fiscal. Los terceros pertenecen a la empresa. |
+| 18 | Todas las aperturas y los cierres quedan registrados en el Historial con su usuario, su fecha y su tipo (anual o mensual). |
+| 19 | Cerrar el año fiscal no es lo mismo que ejecutar el Cierre anual contable. |
+| 20 | Bloquear la edición de comprobantes no es cerrar un periodo. |
 
 ## Preguntas frecuentes
 
@@ -453,25 +502,46 @@ No. Deben crearse de nuevo en cada año fiscal.
 No. Los terceros pertenecen a la empresa y están disponibles en todos los años.
 
 **¿Dónde se abren y se cierran los meses?**
-En `Contabilidad > Configuración > Especiales > Periodos > Periodos contables > Gestionar periodos contables`.
+En `Contabilidad > Configuración > Especiales > Periodos > Periodos contables > Gestionar periodos contables`, que abre la ventana **Periodos Contables**.
+
+**¿Hay que cambiar el año activo para cerrar un mes de otro año?**
+No. La ventana **Periodos Contables** tiene su propio desplegable **Buscar Año** y permite gestionar los periodos de cualquier año habilitado sin salir del año en el que se está trabajando.
+
+**¿Por qué la ventana de periodos aparece vacía al abrirla?**
+Porque todavía no se ha seleccionado un año. El cuerpo muestra el texto «Selecciona un año» hasta que se elige uno en **Buscar Año**.
+
+**¿Qué significa la barra «Progreso del año»?**
+Indica cuántos de los doce meses del año fiscal están cerrados, con el contador `N/12` a su derecha.
 
 **¿Se pueden tener meses abiertos y cerrados a la vez?**
 Sí. Cada mes se gestiona por separado dentro del año fiscal.
 
+**¿Cerrar un mes pide confirmación?**
+No. El cierre es inmediato y la plataforma responde con «Mes cerrado correctamente». La acción es reversible con el botón **Abrir** de la misma fila.
+
 **¿Por qué no se pueden abrir ni cerrar meses?**
-Porque el año fiscal está cerrado. Con el año cerrado los controles mensuales no responden; primero hay que abrir el año.
+Porque el año fiscal está cerrado. En ese estado la lista de meses desaparece y en su lugar aparece el aviso «Año fiscal cerrado — No se pueden abrir o cerrar meses»; primero hay que pulsar **Abrir año**.
+
+**¿Cerrar y volver a abrir el año cambia el estado de los meses?**
+No. Al abrir el año, cada mes reaparece en el estado en que quedó.
 
 **¿Por qué no se puede grabar un comprobante en cierta fecha?**
 Porque el mes está cerrado o porque la fecha no pertenece al año fiscal activo.
 
 **¿Cómo se sabe si un periodo está abierto antes de grabar?**
-La pantalla del comprobante muestra **Periodo abierto** o **Periodo cerrado** según la fecha capturada.
+La pantalla del comprobante muestra **Periodo abierto** o **Periodo cerrado** según la fecha capturada. La etiqueta de periodo cerrado aparece en ámbar junto al título de la ventana.
+
+**¿Qué mensaje muestra la plataforma al intentar guardar en un mes cerrado?**
+«No se pueden realizar operaciones contables en [mes] de [año]. El periodo está cerrado.»
+
+**¿Se puede editar un comprobante ya existente de un mes cerrado?**
+No. El cierre bloquea tanto el registro de movimientos nuevos como la modificación de los anteriores.
 
 **¿Qué hacer si aparece «Periodo cerrado» y la fecha es la correcta?**
 Abrir ese mes desde **Gestionar periodos contables** y volver a grabar.
 
 **¿Se puede saber quién cerró o abrió un periodo?**
-Sí. La opción **Historial** del panel Periodos registra el usuario, la fecha y si la operación fue anual o mensual.
+Sí, por dos vías. La fila del mes en **Periodos Contables** muestra «Cerrado por» y «Fecha» del estado vigente, y la opción **Historial** del panel Periodos registra la secuencia completa con el usuario, la fecha y si la operación fue anual o mensual.
 
 **¿Hay que cerrar el año anterior para empezar a trabajar el año nuevo?**
 No. Ambos años pueden estar abiertos al mismo tiempo mientras se termina de cuadrar el anterior.
