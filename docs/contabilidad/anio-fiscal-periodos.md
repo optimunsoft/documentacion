@@ -84,7 +84,7 @@ La contabilidad en Zoe está organizada por años y, dentro de cada año, por me
 | Agregar un año fiscal | `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Agregar año fiscal` |
 | Quitar un año fiscal | `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Quitar año fiscal` |
 | Abrir o cerrar meses y el año | `Contabilidad > Configuración > Especiales > Periodos > Periodos contables > Gestionar periodos contables` |
-| Consultar aperturas y cierres | `Contabilidad > Configuración > Especiales > Periodos > Historial` |
+| Consultar el historial de aperturas y cierres | `Contabilidad > Configuración > Especiales > Periodos > Historial` |
 | Cambiar el año fiscal activo | Contenedor azul del año en el sidebar del menú Contabilidad, o atajo `Alt + A` |
 | Trasladar saldos entre años | `Contabilidad > Configuración > Especiales > Comprobantes > Mover Saldos Finales a Iniciales` |
 | Ejecutar el cierre contable del ejercicio | `Contabilidad > Configuración > Especiales > Comprobantes > Cierre anual` |
@@ -191,7 +191,7 @@ Cada opción tiene un **ícono de información** que despliega un aviso con el e
 
 **Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Agregar año fiscal`.
 
-Se abre la ventana **Agregar año fiscal**, con el subtítulo «Crea un nuevo periodo contable».
+Se abre la ventana **Agregar año fiscal**, con el subtítulo «Añade un nuevo año fiscal a tu espacio de trabajo».
 
 **Campos de la ventana:**
 
@@ -217,7 +217,7 @@ Se abre la ventana **Agregar año fiscal**, con el subtítulo «Crea un nuevo pe
 
 **Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Años fiscales > Quitar año fiscal`.
 
-Se abre una ventana con el subtítulo «Quita un periodo de tu lista».
+Se abre la ventana **Quitar año fiscal**, con el subtítulo «Quita un año fiscal de tu espacio de trabajo».
 
 **Campos de la ventana:**
 
@@ -225,11 +225,11 @@ Se abre una ventana con el subtítulo «Quita un periodo de tu lista».
 | --- | --- | --- | --- |
 | **Año** | Lista desplegable | Sí | Año que se desea retirar de la lista. |
 | **Cancelar** | Botón | — | Cierra la ventana sin retirar el año. |
-| Botón de confirmación | Botón | — | Retira el año seleccionado. |
+| **Quitar** | Botón | — | Retira el año seleccionado. |
 
-**Confirmación:** la plataforma muestra un aviso de operación exitosa indicando que el año fiscal fue retirado.
+**Confirmación:** la plataforma muestra el aviso **«Operación exitosa — Año fiscal eliminado correctamente»**. El aviso conserva la palabra «eliminado» aunque la opción del menú y la ventana usen el verbo «quitar».
 
-TODO(dato): confirmar contra la interfaz actual el título exacto de la ventana, la etiqueta de su botón de confirmación y el texto del aviso de éxito. La opción del menú se denominaba «Eliminar año fiscal» en versiones anteriores y hoy se denomina **«Quitar año fiscal»**; las grabaciones disponibles de esa ventana corresponden a la versión anterior.
+**Verificación posterior:** al volver a abrir el desplegable de **Configuración de año fiscal** o el de **Quitar año fiscal**, el año retirado ya no aparece en la lista.
 
 **Alcance real de la acción.** El aviso informativo de la opción lo declara de forma explícita: **«Ya no tendrás disponible este año fiscal. NO se eliminará la información que hayas grabado.»** Retirar un año lo saca de la lista de trabajo y del selector del sidebar; los comprobantes, el PUC y los demás datos de ese año se conservan. Si el año vuelve a agregarse más adelante, su información sigue disponible.
 
@@ -288,22 +288,27 @@ Abre la ventana **Periodos Contables**, con el subtítulo «Consulta y gestiona 
 
 **Ruta:** `Contabilidad > Configuración > Especiales > Periodos > Historial`.
 
-Registra la trazabilidad de los cambios de estado de los periodos de la empresa.
+Abre la ventana **Historial de movimientos**, con el subtítulo «Consulta el historial de periodos». Registra la trazabilidad de los cambios de estado de los periodos de la empresa.
 
-**Diferencia con la información de la fila del mes:** la ventana **Periodos Contables** indica quién cerró cada mes y cuándo, pero solo del estado vigente. El **Historial** recoge la secuencia completa de aperturas y cierres, incluidos los de los meses que después volvieron a abrirse y los del año completo.
+**Diferencia con la información de la fila del mes:** la ventana **Periodos Contables** indica quién cerró cada mes y cuándo, pero solo del estado vigente. El **Historial de movimientos** recoge la secuencia completa de aperturas y cierres, incluidos los de los meses que después volvieron a abrirse.
 
-**Información que registra:**
+**Presentación:** no es una tabla de columnas sino una **línea de tiempo vertical**, ordenada de lo más reciente hacia atrás. Cada evento se presenta como una tarjeta precedida de un ícono de estado.
 
-| Dato | Contenido |
+**Contenido de cada entrada:**
+
+| Elemento | Contenido |
 | --- | --- |
-| **Usuario** | Quién ejecutó la apertura o el cierre. |
-| **Fecha** | Cuándo se ejecutó. |
-| **Tipo** | Si la operación fue **anual** o **mensual**. |
-| **Periodo afectado** | El año o el mes sobre el que se actuó. |
+| Ícono de estado | Un check azul cuando el evento fue una **apertura**; una equis gris cuando fue un **cierre**. |
+| Año | El año fiscal al que corresponde el evento. |
+| Etiqueta de estado | **ABIERTO** (verde) o **CERRADO** (gris). |
+| Fecha | Fecha del evento en formato largo, por ejemplo «14 de septiembre de 2026». |
+| Usuario | Usuario que ejecutó la operación. |
+
+**Controles de la ventana:** paginación numerada con selector de registros por página, con valor predeterminado de 7 por página.
 
 **Para qué sirve:** permite explicar por qué un periodo que se creía cerrado aparece abierto, identificar quién reabrió un mes para hacer un ajuste y determinar en qué momento se cerró el año. Cumple para los periodos la misma función que el historial de cambios cumple para los terceros y las cuentas del PUC.
 
-TODO(dato): confirmar las columnas exactas de la ventana de Historial y si dispone de buscador, filtro y paginación propios.
+TODO(dato): confirmar cómo distingue la ventana los eventos mensuales de los anuales. En las entradas verificadas la tarjeta muestra únicamente el año, sin indicar el mes afectado ni el tipo de periodo.
 
 ## Validaciones al registrar un comprobante
 
@@ -453,7 +458,7 @@ No la elimina. El aviso de la propia opción lo declara: «Ya no tendrás dispon
 | 15 | El cierre de un periodo bloquea tanto el registro de movimientos nuevos como la edición de los comprobantes ya existentes con fecha de ese mes. |
 | 16 | La pantalla del comprobante indica el estado del periodo con los textos **Periodo abierto** y **Periodo cerrado**. |
 | 17 | El PUC, los tipos de documento, los centros de costo, los anexos, los comprobantes y los reportes pertenecen al año fiscal. Los terceros pertenecen a la empresa. |
-| 18 | Todas las aperturas y los cierres quedan registrados en el Historial con su usuario, su fecha y su tipo (anual o mensual). |
+| 18 | Todas las aperturas y los cierres quedan registrados en el **Historial de movimientos**, con su usuario, su fecha y si el evento fue una apertura o un cierre. |
 | 19 | Cerrar el año fiscal no es lo mismo que ejecutar el Cierre anual contable. |
 | 20 | Bloquear la edición de comprobantes no es cerrar un periodo. |
 
@@ -541,7 +546,7 @@ No. El cierre bloquea tanto el registro de movimientos nuevos como la modificaci
 Abrir ese mes desde **Gestionar periodos contables** y volver a grabar.
 
 **¿Se puede saber quién cerró o abrió un periodo?**
-Sí, por dos vías. La fila del mes en **Periodos Contables** muestra «Cerrado por» y «Fecha» del estado vigente, y la opción **Historial** del panel Periodos registra la secuencia completa con el usuario, la fecha y si la operación fue anual o mensual.
+Sí, por dos vías. La fila del mes en **Periodos Contables** muestra «Cerrado por» y «Fecha» del estado vigente, y la opción **Historial** del panel Periodos abre el **Historial de movimientos**, una línea de tiempo con la secuencia completa de aperturas y cierres, cada una con su usuario y su fecha.
 
 **¿Hay que cerrar el año anterior para empezar a trabajar el año nuevo?**
 No. Ambos años pueden estar abiertos al mismo tiempo mientras se termina de cuadrar el anterior.
