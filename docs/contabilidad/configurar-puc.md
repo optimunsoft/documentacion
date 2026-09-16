@@ -224,7 +224,7 @@ Para crear una cuenta se hace **clic directo sobre la cuenta que será la cuenta
 | **Código** | Texto con prefijo fijo | Sí | Se compone de dos partes: el prefijo de la cuenta padre, que el sistema muestra fijo y no editable, y los dígitos finales, que escribe el usuario. |
 | **Nombre** | Texto | Sí | Nombre con el que la cuenta aparecerá en el árbol, en los comprobantes y en los reportes. |
 | **Naturaleza** | Lista desplegable | Sí | Valores posibles: **Débito** o **Crédito**. Define de qué lado suma la cuenta. |
-| **Solicitar** | Lista desplegable de selección única | No | **Solo se muestra cuando la casilla ¿Es auxiliar? está marcada.** Define qué dato adicional exigirá el comprobante al usar esta cuenta. Valores posibles: **Tercero** o **Centro de costo**. No permite seleccionar los dos valores al mismo tiempo. |
+| **Solicitar** | Lista desplegable | No | **Solo se muestra cuando la casilla ¿Es auxiliar? está marcada.** Define qué dato adicional exigirá el comprobante al usar esta cuenta. Valores posibles: **Tercero**, **Centro de costo** o ambos. |
 | **¿Es auxiliar?** | Casilla de verificación | No | Etiquetada «Marca si es auxiliar (Cuenta auxiliar)». Si se marca, la cuenta queda como último nivel: recibe movimientos y no admite cuentas hijas. |
 | **¿Cuenta activa?** | Casilla de verificación | No | Etiquetada «Marca si es activa (Cuenta en uso)». Si se marca, la cuenta está disponible para usarse. Si se desmarca, la cuenta queda inactiva. |
 
@@ -271,7 +271,7 @@ El campo **Solicitar** de la ventana de la cuenta determina qué información ad
 
 **Condición de visibilidad:** el campo **Solicitar** únicamente se muestra en la ventana cuando la casilla **¿Es auxiliar?** está marcada. Si la cuenta no es auxiliar, el campo se oculta, porque las cuentas auxiliares son las que reciben los movimientos contables.
 
-**Tipo de selección:** es una lista desplegable de **selección única**. En la interfaz actual se elige **Tercero** o **Centro de costo**, no ambos valores simultáneamente.
+**Tipo de selección:** es una lista desplegable que admite **Tercero**, **Centro de costo** o ambos valores en la misma cuenta. Cada marca exige su dato de forma independiente en el comprobante.
 
 **Regla de negocio:** si la cuenta tiene activada la marca de **Tercero** o de **Centro de costo**, el comprobante **exigirá obligatoriamente** ese dato. La línea del comprobante no se puede guardar sin diligenciarlo.
 
@@ -374,7 +374,7 @@ Este es el procedimiento oficial para ajustar un PUC que ya tiene saldos activos
 | 11 | Para ajustar un PUC con saldos activos se crea una cuenta auxiliar temporal y se traslada el saldo mediante `Contabilidad > Especiales > Mover saldos de una cuenta a otra cuenta`. |
 | 12 | La exportación a Excel permite revisar el PUC completo de forma masiva sin desplegar el árbol. |
 | 13 | La gestión de cuentas en el árbol se hace con un clic directo sobre la cuenta, que abre la ventana de creación o edición. |
-| 14 | El campo **Solicitar** solo se muestra cuando la cuenta está marcada como auxiliar, y es de selección única: Tercero o Centro de costo. |
+| 14 | El campo **Solicitar** solo se muestra cuando la cuenta está marcada como auxiliar, y admite Tercero, Centro de costo o ambos valores. |
 
 ## Preguntas frecuentes
 
@@ -403,7 +403,7 @@ No se puede eliminar directamente. Primero hay que trasladar el saldo a otra cue
 Porque la casilla **¿Es auxiliar?** no está marcada. El campo **Solicitar** solo se muestra en cuentas auxiliares.
 
 **¿Se puede exigir tercero y centro de costo en la misma cuenta?**
-No con la interfaz actual: el campo **Solicitar** es de selección única y admite **Tercero** o **Centro de costo**.
+Sí. El campo **Solicitar** admite **Tercero**, **Centro de costo** o ambos valores. Si la cuenta tiene los dos, la línea del comprobante exigirá tanto el tercero como el centro de costo.
 
 **¿Cómo se revisa el PUC completo sin desplegar el árbol?**
 Con el botón **Descargar** de la parte superior derecha de la pantalla, que exporta el plan de cuentas completo a Excel.
