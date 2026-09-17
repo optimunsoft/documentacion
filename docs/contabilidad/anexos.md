@@ -51,7 +51,7 @@ Los Anexos en Zoe Nube son tablas de parametrización tributaria estructuradas p
 8. [Copiar Anexos entre años fiscales](#copiar-anexos-entre-años-fiscales)
 9. [Calculadora automática en comprobantes contables](#calculadora-automática-en-comprobantes-contables)
 10. [Impacto en reportes y certificados al cierre de año](#impacto-en-reportes-y-certificados-al-cierre-de-año)
-11. [Solución de problemas y errores frecuentes](#solución-de-problemas-y-errores-frecuentes)
+11. [Errores frecuentes](#errores-frecuentes)
 12. [Resumen de reglas de negocio](#resumen-de-reglas-de-negocio)
 13. [Preguntas frecuentes](#preguntas-frecuentes)
 
@@ -206,7 +206,7 @@ Al finalizar el periodo contable o al cierre del año fiscal, la información re
 
 ---
 
-## Solución de problemas y errores frecuentes
+## Errores frecuentes
 
 ### La calculadora no se activa al seleccionar la cuenta en el comprobante
 - **Causa 1:** La cuenta no está vinculada a ningún anexo en el año fiscal en curso. Si fue configurada en el año anterior, debe copiarse o crearse en el año activo.
