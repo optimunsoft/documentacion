@@ -213,13 +213,36 @@ El formulario **Nuevo comprobante** incluye, arriba a la derecha, el botón desp
 2. En **Importar datos**, elegir **Descargar plantilla**. Se descarga el archivo `plantilla_comprobante_zoenube.xlsx`.
 3. Diligenciar la plantilla con las líneas del asiento y guardarla.
 4. En **Importar datos**, elegir **Importar** y seleccionar el archivo `.xlsx`.
-5. La plataforma muestra «Operación exitosa — Datos importados correctamente» y llena la tabla **Cuentas del asiento** con la cuenta, el concepto, la factura, el tercero, el centro de costo y los valores débito y crédito de cada línea. La fecha del formulario también se ajusta.
-6. Revisar la **Fecha**, seleccionar el **Tipo de documento** y escribir la **Descripción** (campos obligatorios).
+5. La plataforma muestra «Operación exitosa — Datos importados correctamente» y llena la tabla **Cuentas del asiento** con la cuenta, el concepto, la factura, el tercero, el centro de costo y los valores débito y crédito de cada línea.
+6. Revisar la **Fecha** y el mes, seleccionar el **Tipo de documento** y escribir la **Descripción** (campos obligatorios). La plantilla no trae estos datos: se completan en el formulario.
 7. Verificar que la **Diferencia** sea $ 0,00 y seleccionar **Crear**.
 
 **Resultado:** la plataforma muestra «Operación exitosa — Comprobante creado correctamente» y el comprobante aparece de primero en el listado con estado **Contabilizado**. Las líneas importadas se pueden corregir en pantalla antes de crear el comprobante.
 
-TODO(dato): listar las columnas de la plantilla de comprobantes e indicar cuáles son obligatorias.
+**Columnas de la plantilla:** el archivo `plantilla_comprobante_zoenube.xlsx` tiene una sola hoja, **Plantilla**, con una fila de encabezados y una fila por cada línea del asiento.
+
+| Columna | Contenido | Campo que llena en el formulario |
+| --- | --- | --- |
+| **Cuenta** | Código de la cuenta auxiliar del PUC, por ejemplo `110505`. | **Cuenta** |
+| **NIT** | Documento o NIT del tercero, sin dígito de verificación, por ejemplo `900123456`. | **Tercero** |
+| **# Factura** | Número de factura asociado a la línea, por ejemplo `FV-001`. | **Factura** |
+| **Concepto** | Texto que describe el movimiento de la línea. | **Concepto** |
+| **Débito** | Valor débito de la línea, como número y sin formato de moneda. | **Débito** |
+| **Crédito** | Valor crédito de la línea, como número y sin formato de moneda. | **Crédito** |
+| **Centro Costo** | Nombre del centro de costo, por ejemplo `Ventas`. | **C. Costo** |
+
+- Cada línea lleva su valor en **Débito** o en **Crédito**, y la otra columna queda vacía.
+- **NIT** y **Centro Costo** se diligencian en las líneas cuya cuenta los exige (campo **Solicitar** del PUC); en las demás pueden quedar vacíos, y el formulario muestra **No requerido**.
+- La plantilla no incluye fecha, tipo de documento ni descripción: son datos del comprobante completo, no de cada línea, y se completan en el formulario.
+- Deben conservarse los encabezados y el orden de las columnas de la plantilla descargada.
+
+Ejemplo (el que trae la plantilla):
+
+| Cuenta | NIT | # Factura | Concepto | Débito | Crédito | Centro Costo |
+| --- | --- | --- | --- | --- | --- | --- |
+| 110505 | 900123456 | FV-001 | Ingreso caja general | 10000000 | | |
+| 11100101 | 900123456 | FV-001 | Ingreso bancos | 10000000 | | Ventas |
+| 310505 | 900123456 | FV-001 | Aporte capital social | | 20000000 | |
 
 ## Solución de problemas
 
