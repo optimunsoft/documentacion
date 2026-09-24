@@ -1,6 +1,6 @@
 ---
 title: Anexos y calculadora de impuestos
-description: Configuración de tablas de anexos contables por empresa y año fiscal para la liquidación de retenciones, IVA y otros tributos. Cubre la pantalla de Anexos, la creación y edición de registros, la vinculación de cuentas contables del PUC con porcentajes y naturaleza débito/crédito, la copia de configuración entre años fiscales, la activación automática de la calculadora de impuestos en los comprobantes contables, la no obligatoriedad de su uso, la generación masiva de certificados de retenciones y la consulta de reportes analíticos de anexos.
+description: Configuración de Anexos contables por empresa y año fiscal en Zoe Nube. Cubre la pantalla de Anexos (Contabilidad > Configuración > Anexos), la creación de un anexo con código, nombre y una o varias cuentas del PUC con porcentaje, naturaleza débito/crédito y factor, el carácter opcional de los anexos, la calculadora «Calculo Valor Retención» que se abre en los comprobantes al elegir una cuenta de un anexo, el Certificado de Retenciones y los reportes Reporte de Anexos y Configuración de Anexos.
 module: contabilidad
 category: configuracion
 slug: anexos
@@ -17,43 +17,43 @@ tags:
   - impuestos
   - puc
   - calculadora
-  - base-gravable
+  - valor-base
   - porcentaje
   - tarifa
   - naturaleza
+  - factor
   - debito
   - credito
   - comprobantes
-  - certificados-de-retencion
-  - reportes-anexos
-  - cierre-fiscal
+  - certificado-de-retenciones
+  - reporte-de-anexos
+  - configuracion-de-anexos
   - ano-fiscal
   - contabilidad
   - optimun
 draft: false
 rag_exclude: false
-last_updated: 2026-09-16
+last_updated: 2026-09-24
 ---
 
 # Anexos y calculadora de impuestos
 
-Los Anexos en Zoe Nube son tablas de parametrización tributaria estructuradas por empresa y año fiscal que permiten agrupar cuentas contables del Plan Único de Cuentas (PUC) asignándoles un porcentaje (tarifa) y una naturaleza contable específica (débito o crédito). Su objetivo principal es automatizar el cálculo de retenciones e impuestos en los comprobantes contables mediante una calculadora rápida, garantizar la exactitud en la captura de las bases gravables y permitir la generación masiva e instantánea de certificados de retención y reportes analíticos al cierre del ejercicio. Este documento detalla la ubicación de la pantalla, la lógica de configuración, el comportamiento de la calculadora en los comprobantes, su carácter opcional y su impacto en reportes y certificados.
+Los Anexos en Zoe Nube son grupos de cuentas contables del Plan Único de Cuentas (PUC) que la empresa configura por año fiscal. A cada cuenta del grupo se le asigna un porcentaje, una naturaleza (débito o crédito) y un factor. Cuando en un comprobante se elige una cuenta que pertenece a un anexo, Zoe abre una calculadora que obtiene el valor del impuesto a partir de la base. La información registrada con esas cuentas se consulta después en el Certificado de Retenciones y en los reportes del grupo Anexos. Este documento describe la pantalla, la creación de un anexo, la calculadora, el certificado y los reportes.
 
 ## Tabla de contenido
 
 1. [Ubicación en la aplicación](#ubicación-en-la-aplicación)
 2. [Requisitos previos](#requisitos-previos)
 3. [Concepto: qué son los Anexos](#concepto-qué-son-los-anexos)
-4. [Alcance: configuración por empresa y año fiscal](#alcance-configuración-por-empresa-y-año-fiscal)
-5. [Nota aclaratoria: uso no obligatorio](#nota-aclaratoria-uso-no-obligatorio)
-6. [Elementos de la pantalla de Anexos](#elementos-de-la-pantalla-de-anexos)
-7. [Asociación de cuentas, porcentajes y naturaleza](#asociación-de-cuentas-porcentajes-y-naturaleza)
-8. [Copiar Anexos entre años fiscales](#copiar-anexos-entre-años-fiscales)
-9. [Calculadora automática en comprobantes contables](#calculadora-automática-en-comprobantes-contables)
-10. [Impacto en reportes y certificados al cierre de año](#impacto-en-reportes-y-certificados-al-cierre-de-año)
-11. [Errores frecuentes](#errores-frecuentes)
-12. [Resumen de reglas de negocio](#resumen-de-reglas-de-negocio)
-13. [Preguntas frecuentes](#preguntas-frecuentes)
+4. [Nota aclaratoria: uso no obligatorio](#nota-aclaratoria-uso-no-obligatorio)
+5. [Elementos de la pantalla de Anexos](#elementos-de-la-pantalla-de-anexos)
+6. [Crear un anexo: cuentas, porcentajes y naturaleza](#crear-un-anexo-cuentas-porcentajes-y-naturaleza)
+7. [Calculadora en comprobantes contables](#calculadora-en-comprobantes-contables)
+8. [Certificado de Retenciones](#certificado-de-retenciones)
+9. [Reportes del grupo Anexos](#reportes-del-grupo-anexos)
+10. [Errores frecuentes](#errores-frecuentes)
+11. [Resumen de reglas de negocio](#resumen-de-reglas-de-negocio)
+12. [Preguntas frecuentes](#preguntas-frecuentes)
 
 ---
 
@@ -61,44 +61,37 @@ Los Anexos en Zoe Nube son tablas de parametrización tributaria estructuradas p
 
 - **Ruta de menú:** `Contabilidad > Configuración > Anexos`.
 - **Ruta de navegación mostrada en pantalla (breadcrumb):** `PANEL / CONFIGURACIÓN / ANEXOS`.
-- **Título de la pantalla:** «Anexos».
-- **Contexto visual:** El año fiscal activo y la empresa seleccionada se muestran permanentemente en el contenedor azul del sidebar.
+- **Título de la pantalla:** «Anexos», con el subtítulo «Configura y gestiona los anexos contables de tu empresa».
+- **Contexto:** el año fiscal de trabajo se muestra en el contenedor azul del menú lateral. Los anexos que se ven son los de ese año.
 
 ---
 
 ## Requisitos previos
 
-1. Contar con una empresa creada y seleccionada en Zoe.
-2. Disponer de permisos de acceso al módulo de `Contabilidad`.
-3. Tener activo el año fiscal correspondiente en el que se aplicarán las operaciones.
-4. Tener previamente creadas en el PUC las cuentas auxiliares imputables donde se contabilizarán las retenciones o impuestos (por ejemplo, subcuentas del grupo 2365 para retención en la fuente, 2408 para IVA, o 2368 para ReteICA).
+1. Tener una empresa creada y seleccionada en Zoe.
+2. Estar trabajando en el año fiscal que se quiere configurar.
+3. Tener en el PUC las cuentas que se van a incluir en el anexo, por ejemplo subcuentas del grupo 2365 (retención en la fuente) o 1355 (anticipo de impuestos).
 
 ---
 
 ## Concepto: qué son los Anexos
 
-Un **Anexo** es una regla de parametrización contable que asocia una o varias cuentas auxiliares del PUC con:
-- Una tarifa o **porcentaje** de cálculo.
-- Una **naturaleza contable** predeterminada (Débito o Crédito).
-- Un **factor de cálculo** (base divisora estándar de 100).
-- Un **nombre descriptivo** que identifica el concepto fiscal.
+Un **Anexo** es un registro por empresa y año fiscal que tiene:
 
-### Flexibilidad tributaria
+- Un **Código** (por ejemplo `001`) y un **Nombre** (por ejemplo «Retenciones»).
+- Una o varias **cuentas del PUC**. Cada cuenta lleva su propio **porcentaje**, **naturaleza** (Débito o Crédito) y **factor**.
 
-Aunque la aplicación más extendida de los Anexos es la configuración de las **Retenciones en la fuente a título de renta** (compras 2.5%, servicios 4%, honorarios 10% o 11%, arrendamientos 3.5%), la herramienta es completamente flexible y se utiliza para:
-- **Retenciones de IVA (ReteIVA):** Cuentas de retención aplicadas en operaciones con régimen común / responsables de IVA.
-- **Retenciones de Industria y Comercio (ReteICA):** Retenciones municipales según la actividad económica y tarifas distritales/municipales (por ejemplo, 4.14‰, 6.9‰, 9.66‰, 11.04‰).
-- **IVA descontable y generado:** Automatización de bases e impuestos sobre ventas o compras.
-- **Autorretenciones:** Autorretención especial a título de renta u otras retenciones autorreguladas.
+Ejemplo real de configuración (tomado del reporte «Configuración de Anexos», año fiscal 2026):
 
----
+| Anexo | Código cuenta | Nombre de cuenta | Naturaleza | Porcentaje |
+| :--- | :--- | :--- | :--- | :--- |
+| 001 - RETENCIONES | 23654001 | COMPRAS GENERALES (NO DECLARANTES) 3.5% | D | 3,50% |
+| 001 - RETENCIONES | 23654002 | COMPRAS GENERALES (DECLARANTES) 2.5% | C | 2,50% |
+| 002 - ANTICIPO RETEFTE 2.5% | 13551501 | ANTCIPO RETE FTE 2.5% | D | 2,50% |
 
-## Alcance: configuración por empresa y año fiscal
+### Flexibilidad
 
-A diferencia de los Terceros (que son globales y pertenecen a la empresa completa sin importar el año), los **Anexos pertenecen al año fiscal activo**:
-- Cada año fiscal contiene su propio catálogo de anexos.
-- Esto permite que si la normativa tributaria nacional o municipal modifica las tarifas de retención o las bases de un año a otro, los cambios se configuren en el nuevo año fiscal sin alterar ni recalcular la información histórica contabilizada en años anteriores.
-- Al habilitar un año fiscal nuevo, los anexos no se trasladan automáticamente en blanco: el usuario dispone de la función **Copiar** para replicar la estructura del año previo en un solo paso.
+El uso más común es la retención en la fuente, pero la empresa puede armar anexos para IVA, ReteICA u otros impuestos, según su gestión interna.
 
 ---
 
@@ -106,123 +99,134 @@ A diferencia de los Terceros (que son globales y pertenecen a la empresa complet
 
 > [!IMPORTANT]
 > **El uso de Anexos NO es obligatorio en Zoe.**
-> 
-> La plataforma permite a los usuarios registrar comprobantes contables y cuadrar asientos ingresando las cuentas y los importes de impuestos manualmente línea por línea. No existe ninguna restricción de guardado que exija que una cuenta deba estar en un anexo.
 >
-> **Sin embargo, su uso es altamente recomendado por tres razones críticas:**
-> 1. **Prevención de errores humanos:** Evita discrepancias por errores de digitación o cálculo mental de tarifas y centavos.
-> 2. **Captura de la base gravable:** Al usar la calculadora, el sistema almacena internamente la base del cálculo vinculada al movimiento contable.
-> 3. **Generación automática de certificados:** Sin anexos y sin base registrada, el módulo de Certificados de Retención no puede consolidar automáticamente la información para los proveedores al cierre del año.
+> Se pueden registrar comprobantes y digitar los valores de los impuestos a mano sin haber creado ningún anexo.
+>
+> Se recomienda configurarlos porque:
+> 1. Activan la calculadora en los comprobantes, que evita errores de digitación y de cálculo.
+> 2. Organizan las cuentas de retenciones que luego se consultan en el Reporte de Anexos y en el Certificado de Retenciones.
 
 ---
 
 ## Elementos de la pantalla de Anexos
 
-En la vista principal de `Contabilidad > Configuración > Anexos` se encuentran los siguientes elementos de control:
-
-| Elemento | Tipo | Función |
-| :--- | :--- | :--- |
-| **Campo de búsqueda** | Filtro de texto | Permite filtrar el listado de anexos por nombre, código de cuenta o concepto. |
-| **Botón Nuevo** | Botón de acción | Despliega el formulario para crear un anexo nuevo en el año fiscal activo. |
-| **Botón Copiar** | Botón de acción | Permite seleccionar otro año fiscal para copiar masivamente sus anexos hacia el año actual. |
-| **Tabla de Anexos** | Vista de datos | Muestra el listado de registros con las columnas: Nombre del Anexo, Cuentas asociadas, Naturaleza, Porcentaje (%) y Factor. |
-| **Acciones de fila** | Menú por registro | Permite **Editar** los parámetros de un anexo existente o **Eliminarlo** si no es requerido. |
-
----
-
-## Asociación de cuentas, porcentajes y naturaleza
-
-Para configurar un Anexo en el sistema:
-
-1. Ingresa a `Contabilidad > Configuración > Anexos`.
-2. Haz clic en el botón **Nuevo**.
-3. Diligencia los campos requeridos en el formulario:
-   - **Nombre del Anexo:** Texto descriptivo del tributo y tarifa (ej. *Retención en la fuente 2.5% compras declarantes*).
-   - **Naturaleza:** Selecciona entre:
-     - **Crédito:** Utilizado en retenciones practicadas que representan un pasivo por pagar a la administración tributaria (DIAN / Municipio).
-     - **Débito:** Utilizado para retenciones que le practicaron a la empresa (anticipos de impuestos / activo) o IVA descontable.
-   - **Porcentaje (%):** Valor numérico de la tarifa tributaria aplicable (ej. `2.5`, `3.5`, `4.0`, `19.0`).
-   - **Factor:** Denominador de cálculo porcentual (valor predeterminado: `100`).
-   - **Cuentas contables asociadas:** Selecciona del PUC la cuenta o subcuenta contable a la que aplicará esta parametrización.
-4. Presiona **Guardar**.
+| Elemento | Función |
+| :--- | :--- |
+| **Campo Consultar + botón Filtrar** | Busca anexos en el listado. |
+| **Botón Nuevo** | Abre la ventana «Nuevo anexo». |
+| **Botón Copiar** | Botón de la barra de la tabla, junto a Nuevo. |
+| **Selector Columnas** | Elige qué columnas se muestran en la tabla. |
+| **Tabla «Listado de anexos»** | Columnas: **ID**, **Código**, **Nombre**, **Cuentas configuradas** (número de cuentas del anexo) y **Acciones**. Muestra el total de registros junto al título. |
+| **Acciones de fila** | Editar (ícono de lápiz) y eliminar (ícono de papelera). |
+| **Paginación** | Navegación entre páginas y selector de registros por página (por defecto 7). |
 
 ---
 
-## Copiar Anexos entre años fiscales
+## Crear un anexo: cuentas, porcentajes y naturaleza
 
-Cuando la empresa crea o habilita un año fiscal nuevo (por ejemplo, el paso de 2025 a 2026):
+1. Ingresar a `Contabilidad > Configuración > Anexos`.
+2. Hacer clic en **Nuevo**. Se abre la ventana **Nuevo anexo** («Crea un nuevo anexo contable»).
+3. Completar los campos obligatorios del encabezado:
+   - **Código\***: identificador del anexo (ej. `004`).
+   - **Nombre\***: nombre descriptivo (ej. `IVA Retenido 15%`).
+4. Hacer clic en **Agregar cuenta**. Se agrega una fila con estas columnas:
 
-1. Cambia al nuevo año fiscal desde el selector ubicado en el contenedor azul del sidebar.
-2. Dirígete a `Contabilidad > Configuración > Anexos`.
-3. Haz clic en el botón **Copiar**.
-4. En la ventana emergente, selecciona el año fiscal de origen desde el cual deseas traer la información (ej. 2025).
-5. Confirma la acción.
-6. Zoe creará en el año activo una réplica exacta de todos los anexos del año origen, vinculando las cuentas del PUC homologadas del nuevo año. Si alguna tarifa varió para el nuevo año (por reforma tributaria o cambio de UVT), se edita puntualmente el anexo correspondiente.
+   | Columna | Contenido |
+   | :--- | :--- |
+   | **Cuenta** | Lista desplegable para buscar la cuenta del PUC (se muestra como `código - nombre`, ej. `13551701 - Iva retenido 15%`). |
+   | **%** | Porcentaje o tarifa (ej. `15`). |
+   | **Nat.** | Naturaleza: `Débito` o `Crédito`. |
+   | **Factor** | Lista desplegable con el divisor del cálculo (valor mostrado: `100`). |
+   | **Acciones** | Ícono de papelera para quitar la fila. |
+
+5. Repetir **Agregar cuenta** por cada cuenta adicional. Las filas se paginan dentro de la ventana.
+6. Hacer clic en **Crear** (o **Cancelar** para salir sin guardar). El anexo aparece en el listado con su número de cuentas configuradas.
 
 ---
 
-## Calculadora automática en comprobantes contables
-
-La principal ventaja operativa de parametrizar los anexos se manifiesta en la pantalla de **Nuevo Comprobante** (o edición de comprobantes).
+## Calculadora en comprobantes contables
 
 ### Comportamiento en la interfaz
 
-Cuando el usuario agrega una línea a un asiento y digita o selecciona una cuenta contable que pertenece a un anexo:
-1. El sistema detecta automáticamente la asociación y despliega la ventana modal **Cálculo Valor Retención**.
-2. La ventana presenta los datos del anexo en modo de solo lectura:
-   - **Cuenta:** Código contable seleccionado.
-   - **Nombre Anexo:** Nombre asignado al anexo.
-   - **Nat:** Naturaleza contable predeterminada (Débito o Crédito).
-   - **%:** Tarifa parametrizada.
-   - **Factor:** Factor divisor (100).
-   - **Devolución:** Casilla de verificación para registrar reversiones de retenciones por notas crédito o devoluciones de compras/ventas.
-3. El cursor se posiciona en el campo **Valor Base**.
-4. El usuario escribe el monto base de la transacción (por ejemplo, el subtotal antes de impuestos).
-5. En tiempo real, el sistema calcula el **Valor Impuesto** mediante la fórmula:
-   $$\text{Valor Impuesto} = \frac{\text{Valor Base} \times \text{Porcentaje}}{\text{Factor}}$$
-6. Al presionar el botón **Aplicar**, Zoe:
-   - Inserta el valor calculado en la columna débito o crédito según la naturaleza fijada.
-   - Vincula el valor de la base gravable a la línea del comprobante para alimentar los reportes y certificados.
-7. Si el usuario presiona **Cerrar** o cancela la ventana, la línea permanece disponible para digitación manual del valor.
+Al registrar un comprobante, cuando se elige en una línea una cuenta que pertenece a un anexo del año fiscal de trabajo, Zoe abre la ventana **Calculo Valor Retención** con:
+
+- **Cuenta:** código de la cuenta (ej. `23654002`).
+- **Nombre Anexo:** nombre del anexo (ej. `RETENCIONES`).
+- **Nat:** naturaleza configurada (ej. `Crédito`).
+- **%:** porcentaje configurado (ej. `2,5`).
+- **Factor:** factor configurado (ej. `100`).
+- **Devolución:** casilla de verificación.
+- **Valor Base:** campo donde el usuario escribe la base de la operación.
+- **Valor Impuesto:** resultado calculado.
+- Botones **Cerrar** y **Aplicar**.
+
+### Cálculo
+
+`Valor Impuesto = Valor Base × Porcentaje ÷ Factor`
+
+Ejemplo verificado: Valor Base `$ 100.000`, porcentaje `2,5`, factor `100` → Valor Impuesto `$ 2.500,00`.
+
+**Aplicar** lleva el valor al comprobante. **Cerrar** cierra la ventana sin aplicarlo, y el valor se puede digitar a mano.
 
 ### Recomendación de uso
 
-Se recomienda utilizar **siempre** la calculadora cuando aparezca disponible. Omitir la calculadora e ingresar el valor a mano impide que la base gravable quede registrada en los metadatos del asiento, lo que generará que los certificados de retención aparezcan con bases en cero o incompletas.
+Usar la calculadora no es obligatorio, pero se recomienda usarla siempre que aparezca, para garantizar que el valor corresponda exactamente al porcentaje configurado en el anexo.
 
 ---
 
-## Impacto en reportes y certificados al cierre de año
+## Certificado de Retenciones
 
-Al finalizar el periodo contable o al cierre del año fiscal, la información registrada a través de los Anexos alimenta directamente dos módulos esenciales:
+- **Ruta:** `Contabilidad > Reportes`, grupo **Certificados**, opción **Certificado de Retenciones**.
+- **Ventana:** «Certificado de Retenciones — Genera certificados de retenciones».
 
-### 1. Certificados de Retenciones (`Reportes > Certificados > Certificados de Retenciones`)
-- **Propósito:** Expedir los certificados oficiales de retención en la fuente a título de renta, IVA e ICA que las empresas están obligadas por ley a entregar a sus proveedores.
-- **Funcionamiento masivo:** Zoe totaliza los movimientos del año filtrando por tercero (NIT/nombre) y por anexo/concepto.
-- **Resultado:** En lugar de revisar comprobante por comprobante o extraer hojas de cálculo auxiliares, el usuario puede generar de forma masiva en un solo clic todos los certificados del año en formato PDF (o descargarlos en un archivo comprimido .ZIP).
+| Campo | Obligatorio | Contenido |
+| :--- | :--- | :--- |
+| **Año fiscal** | Sí | Año a certificar. |
+| **Tercero** | Sí | Tercero al que se expide el certificado; se busca por nombre o NIT. |
+| **Cuenta inicial / Cuenta final** (Rango de cuentas) | No | Rango de cuentas que entra en el certificado. |
+| **Tipo de certificado** | Sí | Clase de certificado (ej. `Retención en la fuente`). |
 
-### 2. Reportes de Anexos (`Reportes > Anexos`)
-- **Reporte de Anexos:** Presenta una relación analítica detallada de todos los movimientos del año discriminando Tercero, Tipo y Número de Documento, Fecha, Base Gravable, Tarifa y Valor Retenido. Es la base fundamental para elaborar y conciliar las declaraciones mensuales tributarias (Formulario 350 de Retención en la Fuente, Formulario 300 de IVA).
-- **Configuración de Anexos:** Reporte de auditoría que imprime el listado maestro de cuentas y porcentajes activos en el periodo para efectos de control contable.
+- **Salida:** botón **PDF**. Botón **Cancelar** para salir.
+- El certificado se genera por tercero: el campo Tercero es obligatorio.
+
+---
+
+## Reportes del grupo Anexos
+
+En `Contabilidad > Reportes`, el grupo **Anexos** tiene dos reportes, ambos marcados «Excel y PDF».
+
+### Reporte de Anexos
+
+El PDF se titula «REPORTE ANEXO AGRUPADO». Encabezado: razón social, NIT, «Valores en pesos colombianos (COP)», fecha y zona horaria de impresión. Bloque **PARAMETROS** con: Anexo, Año fiscal, Rango de fechas, Rango de cuentas y Tercero.
+
+El cuerpo se agrupa por cuenta (`CUENTA 23654002 - COMPRAS GENERALES (DECLARANTES) 2.5%`) y cada grupo tiene las columnas:
+
+| NIT | Nombre | % | Base | Débito | Crédito |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 123456789 | Jhon Dario Sanchez | 2,50% | 100.000,00 | 0,00 | 2.500,00 |
+| **TOTALES** | | - | - | 0,00 | 2.500,00 |
+
+Sirve para revisar bases y retenciones por tercero y cuenta antes de declarar o de expedir certificados.
+
+### Configuración de Anexos
+
+El PDF se titula «CONFIGURACIÓN DE ANEXOS». Bloque **PARAMETROS** con el año fiscal. Lista cada anexo (`Anexo: 001 - RETENCIONES`) con sus cuentas y las columnas **Código**, **Nombre de Cuenta**, **Naturaleza** y **Porcentaje**. Sirve para revisar o archivar la configuración vigente del año.
 
 ---
 
 ## Errores frecuentes
 
-### La calculadora no se activa al seleccionar la cuenta en el comprobante
-- **Causa 1:** La cuenta no está vinculada a ningún anexo en el año fiscal en curso. Si fue configurada en el año anterior, debe copiarse o crearse en el año activo.
-- **Causa 2:** Se seleccionó una cuenta de nivel superior (cuenta de grupo o mayor) que no es auxiliar imputable.
-- **Solución:** Ve a `Contabilidad > Configuración > Anexos`, verifica el año activo en el sidebar y comprueba que la cuenta auxiliar figure en la tabla.
+### La calculadora no se abre al elegir la cuenta en el comprobante
+- **Causa:** la cuenta no pertenece a ningún anexo del año fiscal de trabajo.
+- **Solución:** verificar el año en el contenedor azul del menú lateral y confirmar en `Contabilidad > Configuración > Anexos` que la cuenta esté agregada a un anexo de ese año.
 
-### Los anexos desaparecieron o la tabla está vacía
-- **Causa:** Se cambió el año de trabajo desde el sidebar a un año nuevo que aún no ha sido parametrizado.
-- **Solución:** Utiliza el botón **Copiar** para importar los anexos del año fiscal anterior.
+### Al cambiar de año fiscal no aparecen los anexos
+- **Causa:** los anexos se configuran por año fiscal; cada año tiene su propio listado.
+- **Solución:** configurar en el año nuevo los anexos que se van a usar.
 
-### El certificado de retenciones sale con base gravable en cero
-- **Causa:** Al momento de elaborar los comprobantes, los usuarios digitaron los valores de retención directamente en la celda débito/crédito sin ingresar la base en la ventana modal de la calculadora rápida.
-- **Solución:** Para que el certificado refleje la base, los comprobantes deben registrarse utilizando la calculadora rápida del anexo.
-
-### ¿Se pueden vincular varias cuentas a un mismo anexo?
-- **Respuesta:** Sí. Por ejemplo, un anexo denominado «IVA Generado 19%» puede agrupar diferentes subcuentas contables si comparten la misma tarifa y naturaleza. Sin embargo, no es aconsejable asignar una misma cuenta contable a múltiples anexos distintos, ya que provocaría ambigüedad en el cálculo automático.
+### No se puede crear el anexo
+- **Causa:** falta el Código o el Nombre, que son obligatorios.
+- **Solución:** completar ambos campos antes de hacer clic en **Crear**.
 
 ---
 
@@ -230,23 +234,24 @@ Al finalizar el periodo contable o al cierre del año fiscal, la información re
 
 | # | Regla de negocio |
 | :--- | :--- |
-| 1 | Los Anexos pertenecen al **año fiscal activo**, no son globales a la empresa. |
-| 2 | El uso de Anexos **NO es obligatorio** para registrar transacciones ni cerrar periodos en Zoe. |
-| 3 | La calculadora automática se activa al seleccionar en un comprobante una cuenta asociada a un anexo del año activo. |
-| 4 | La calculadora calcula: `(Valor Base × Porcentaje) ÷ Factor`. El factor estándar es 100. |
-| 5 | La base gravable solo se registra en la base de datos si se utiliza el botón **Aplicar** de la calculadora en el comprobante. |
-| 6 | Los anexos se replican en años fiscales nuevos mediante el botón **Copiar**. |
-| 7 | Los Certificados de Retención consolidan la información anual agrupada por tercero a partir de las cuentas y bases vinculadas en los Anexos. |
+| 1 | Los Anexos se configuran por **empresa y año fiscal**. |
+| 2 | El uso de Anexos **NO es obligatorio** para registrar comprobantes. |
+| 3 | Un anexo tiene **Código** y **Nombre** obligatorios y una o varias cuentas del PUC. |
+| 4 | Cada cuenta del anexo tiene su propio **porcentaje**, **naturaleza** (Débito/Crédito) y **factor**. |
+| 5 | La calculadora «Calculo Valor Retención» se abre al elegir en un comprobante una cuenta que pertenece a un anexo del año de trabajo. |
+| 6 | La calculadora calcula `Valor Base × Porcentaje ÷ Factor`; con factor 100 el porcentaje se aplica de la forma habitual. |
+| 7 | Usar la calculadora es opcional (**Cerrar** permite digitar a mano), pero se recomienda. |
+| 8 | El Certificado de Retenciones se genera por tercero (campo obligatorio) y sale en PDF. |
 
 ---
 
 ## Preguntas frecuentes
 
-**¿Qué diferencia hay entre un Anexo y una cuenta del PUC?**  
-La cuenta del PUC es el código donde se registra el saldo financiero (ej. 23654002). El Anexo es la regla de negocio asociada a esa cuenta que le indica al sistema cuál es la tarifa impositiva (2.5%), cuál es su naturaleza habitual (Crédito) y cómo debe calcularse la base.
+**¿Qué diferencia hay entre un Anexo y una cuenta del PUC?**
+La cuenta del PUC es el código donde se registra el movimiento (ej. 23654002). El anexo agrupa una o varias de esas cuentas y le indica a Zoe con qué porcentaje, naturaleza y factor calcular el valor en la calculadora.
 
-**¿Puedo modificar la tarifa de un anexo a mitad de año?**  
-Sí, pero afectará los comprobantes que se registren a partir de ese momento. Los comprobantes contabilizados previamente conservan los valores con los que fueron aprobados.
+**¿Se pueden incluir varias cuentas en un mismo anexo?**
+Sí. Con **Agregar cuenta** se añaden tantas filas como cuentas se necesiten, y cada una lleva su propio porcentaje y naturaleza. Ejemplo: el anexo `001 - RETENCIONES` agrupa 23654001 al 3,50% (D) y 23654002 al 2,50% (C).
 
-**¿Qué pasa con los Anexos si elimino una cuenta del PUC?**  
-Si una cuenta del PUC es eliminada o inactivada, las asociaciones huérfanas en Anexos deben ser eliminadas o actualizadas hacia una cuenta válida para evitar errores de cálculo en los comprobantes.
+**¿Dónde veo cuánto se retuvo a cada tercero?**
+En `Contabilidad > Reportes`, grupo **Anexos**, opción **Reporte de Anexos**: muestra por cuenta y tercero el porcentaje, la base, el débito y el crédito.
