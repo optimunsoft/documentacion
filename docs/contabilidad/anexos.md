@@ -1,6 +1,6 @@
 ---
 title: Anexos y calculadora de impuestos
-description: Configuración de Anexos contables por empresa y año fiscal en Zoe Nube. Cubre la pantalla de Anexos (Contabilidad > Configuración > Anexos), la creación de un anexo con código, nombre y una o varias cuentas del PUC con porcentaje, naturaleza débito/crédito y factor, el carácter opcional de los anexos, la calculadora «Calculo Valor Retención» que se abre en los comprobantes al elegir una cuenta de un anexo, el Certificado de Retenciones y los reportes Reporte de Anexos y Configuración de Anexos.
+description: Configuración de Anexos contables por empresa y año fiscal en Zoe Nube. Cubre la pantalla de Anexos (Contabilidad > Configuración > Anexos), la creación de un anexo con código, nombre y una o varias cuentas del PUC con porcentaje, naturaleza débito/crédito y factor, la copia de anexos desde otro año fiscal o empresa con la ventana «Copiar anexos», el carácter opcional de los anexos, la calculadora «Calculo Valor Retención» que se abre en los comprobantes al elegir una cuenta de un anexo, el Certificado de Retenciones y los reportes Reporte de Anexos y Configuración de Anexos.
 module: contabilidad
 category: configuracion
 slug: anexos
@@ -27,6 +27,8 @@ tags:
   - comprobantes
   - certificado-de-retenciones
   - reporte-de-anexos
+  - copiar-anexos
+  - ano-nuevo
   - configuracion-de-anexos
   - ano-fiscal
   - contabilidad
@@ -48,12 +50,13 @@ Los Anexos en Zoe Nube son grupos de cuentas contables del Plan Único de Cuenta
 4. [Nota aclaratoria: uso no obligatorio](#nota-aclaratoria-uso-no-obligatorio)
 5. [Elementos de la pantalla de Anexos](#elementos-de-la-pantalla-de-anexos)
 6. [Crear un anexo: cuentas, porcentajes y naturaleza](#crear-un-anexo-cuentas-porcentajes-y-naturaleza)
-7. [Calculadora en comprobantes contables](#calculadora-en-comprobantes-contables)
-8. [Certificado de Retenciones](#certificado-de-retenciones)
-9. [Reportes del grupo Anexos](#reportes-del-grupo-anexos)
-10. [Errores frecuentes](#errores-frecuentes)
-11. [Resumen de reglas de negocio](#resumen-de-reglas-de-negocio)
-12. [Preguntas frecuentes](#preguntas-frecuentes)
+7. [Copiar anexos desde otro año fiscal o empresa](#copiar-anexos-desde-otro-año-fiscal-o-empresa)
+8. [Calculadora en comprobantes contables](#calculadora-en-comprobantes-contables)
+9. [Certificado de Retenciones](#certificado-de-retenciones)
+10. [Reportes del grupo Anexos](#reportes-del-grupo-anexos)
+11. [Errores frecuentes](#errores-frecuentes)
+12. [Resumen de reglas de negocio](#resumen-de-reglas-de-negocio)
+13. [Preguntas frecuentes](#preguntas-frecuentes)
 
 ---
 
@@ -114,7 +117,7 @@ El uso más común es la retención en la fuente, pero la empresa puede armar an
 | :--- | :--- |
 | **Campo Consultar + botón Filtrar** | Busca anexos en el listado. |
 | **Botón Nuevo** | Abre la ventana «Nuevo anexo». |
-| **Botón Copiar** | Botón de la barra de la tabla, junto a Nuevo. |
+| **Botón Copiar** | Abre la ventana «Copiar anexos» para traer los anexos de otro año fiscal o de otra empresa al año actual. |
 | **Selector Columnas** | Elige qué columnas se muestran en la tabla. |
 | **Tabla «Listado de anexos»** | Columnas: **ID**, **Código**, **Nombre**, **Cuentas configuradas** (número de cuentas del anexo) y **Acciones**. Muestra el total de registros junto al título. |
 | **Acciones de fila** | Editar (ícono de lápiz) y eliminar (ícono de papelera). |
@@ -141,6 +144,30 @@ El uso más común es la retención en la fuente, pero la empresa puede armar an
 
 5. Repetir **Agregar cuenta** por cada cuenta adicional. Las filas se paginan dentro de la ventana.
 6. Hacer clic en **Crear** (o **Cancelar** para salir sin guardar). El anexo aparece en el listado con su número de cuentas configuradas.
+
+---
+
+## Copiar anexos desde otro año fiscal o empresa
+
+Como los anexos son por año fiscal, el botón **Copiar** permite traer la configuración de un año que ya la tenga, sin crear los anexos uno por uno.
+
+1. Entrar al año fiscal de destino desde el contenedor azul del menú lateral.
+2. En `Contabilidad > Configuración > Anexos`, hacer clic en **Copiar**. Se abre la ventana **Copiar anexos**.
+3. Completar el bloque **Origen**:
+
+   | Campo | Obligatorio | Contenido |
+   | :--- | :--- | :--- |
+   | **Empresa de origen** | Sí | Lista desplegable con las empresas del usuario (puede ser la misma empresa u otra). |
+   | **Año fiscal de origen** | Sí | Lista desplegable con los años fiscales de la empresa elegida (ej. 2023, 2022, 2019…). |
+
+4. Revisar el bloque **Destino**, que no es editable:
+   - **Empresa de destino:** la empresa en la que se está trabajando.
+   - **Año fiscal de destino:** el año fiscal de trabajo (ej. 2026).
+5. Leer el aviso: «Esta acción sobreescribira la configuración de cuentas de anexos del año fiscal actual.»
+6. Hacer clic en **Copiar anexos**, o en **Cancelar** para salir sin copiar.
+
+> [!WARNING]
+> La copia **sobrescribe** la configuración de cuentas de anexos del año fiscal actual. Si el año de destino ya tiene anexos configurados, conviene revisarlos antes de copiar.
 
 ---
 
@@ -222,7 +249,7 @@ El PDF se titula «CONFIGURACIÓN DE ANEXOS». Bloque **PARAMETROS** con el año
 
 ### Al cambiar de año fiscal no aparecen los anexos
 - **Causa:** los anexos se configuran por año fiscal; cada año tiene su propio listado.
-- **Solución:** configurar en el año nuevo los anexos que se van a usar.
+- **Solución:** traerlos del año anterior con el botón **Copiar** (ventana «Copiar anexos») o crearlos con **Nuevo**.
 
 ### No se puede crear el anexo
 - **Causa:** falta el Código o el Nombre, que son obligatorios.
@@ -242,6 +269,7 @@ El PDF se titula «CONFIGURACIÓN DE ANEXOS». Bloque **PARAMETROS** con el año
 | 6 | La calculadora calcula `Valor Base × Porcentaje ÷ Factor`; con factor 100 el porcentaje se aplica de la forma habitual. |
 | 7 | Usar la calculadora es opcional (**Cerrar** permite digitar a mano), pero se recomienda. |
 | 8 | El Certificado de Retenciones se genera por tercero (campo obligatorio) y sale en PDF. |
+| 9 | «Copiar anexos» exige empresa y año fiscal de origen; el destino es siempre la empresa y el año de trabajo, y la copia sobrescribe la configuración de cuentas de anexos de ese año. |
 
 ---
 
