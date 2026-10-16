@@ -46,7 +46,7 @@ tags:
   - optimun
 draft: false
 rag_exclude: false
-last_updated: 2026-09-14
+last_updated: 2026-09-22
 ---
 
 # Años fiscales y periodos contables
@@ -381,6 +381,8 @@ Secuencia recomendada cuando ya existe un año fiscal con movimientos y comienza
 **Los terceros no se rehacen.** A diferencia del PUC y de los centros de costo, los terceros pertenecen a la empresa y siguen disponibles en el año nuevo sin ninguna acción adicional.
 
 ## Herramientas complementarias del panel Comprobantes
+
+> Este documento se centra en el panel **Periodos** de Acciones Especiales. El panel **Comprobantes** completo (incluidas **Saldos Iniciales** y **Comprobantes en Proceso**, no cubiertas aquí) y el panel **Terceros** tienen su propia guía dedicada: [Especiales – Comprobantes y Terceros](./especiales.md).
 
 ### Mover Saldos Finales a Iniciales
 

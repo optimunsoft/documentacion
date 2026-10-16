@@ -31,7 +31,7 @@ tags:
   - optimun
 draft: false
 rag_exclude: false
-last_updated: 2026-09-07
+last_updated: 2026-09-22
 ---
 
 # Terceros
@@ -263,6 +263,8 @@ El campo de documento o NIT permanece **bloqueado en la pantalla de edición** p
 **Alcance del cambio:** el proceso actualiza el documento del tercero conservando su identidad y su historial. Los movimientos contables ya registrados siguen enlazados al mismo tercero, ahora identificado con el documento corregido; no se duplica el registro ni se pierde el historial.
 
 **Cuándo se usa:** para corregir un documento digitado de forma errónea o para actualizar el número cuando el tercero cambia de identificación. No es el camino para trasladar los movimientos de un tercero a otro: si los movimientos corresponden realmente a otra contraparte, deben corregirse en los comprobantes.
+
+Esta operación también está documentada, junto con el resto del panel Terceros de Acciones Especiales, en [Especiales – Comprobantes y Terceros](./especiales.md#actualización-de-documento-de-identificación).
 
 ## Eliminar un tercero y sus restricciones
 
