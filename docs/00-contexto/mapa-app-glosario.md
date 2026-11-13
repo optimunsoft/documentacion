@@ -25,7 +25,7 @@ Pantalla principal del sistema donde el usuario selecciona la empresa con la que
 | Inicio | Crear Empresa | Permite registrar una nueva empresa dentro del sistema. |
 | Administración | Inicio | Redirige a la pantalla principal del sistema. |
 | Administración | Mis Empresas | Permite administrar las empresas registradas por el usuario. |
-| Control de acceso | Usuarios | Permite crear, editar, consultar o desactivar usuarios del sistema. |
+| Control de acceso | Usuarios | Permite crear, editar, restablecer la contraseña y eliminar usuarios del sistema. |
 | Control de acceso | Roles y permisos | Permite administrar los roles y definir los permisos asignados a cada uno. |
 
 
